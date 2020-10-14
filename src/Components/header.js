@@ -5,6 +5,8 @@ import { signOut } from "../GoogleAuth/authUtils";
 import BasicDashboard from '../Dashboard/Basic/index';
 import DashBoard from "../Dashboard/dashboard";
 import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
+import { isGoogleSignedIn } from '../App';
 
 const Container = styled.div`
   height: 10vh;
@@ -30,24 +32,46 @@ const Container = styled.div`
   }
 `;
 
-const fbSignIn = () => {
-  console.log('yes')
-  window.location = '/test'
-  
+var googleButtonText = isGoogleSignedIn? "Signed In" : "SIGN IN WITH GOOGLE";
+var facebookTextButton = "SIGN IN WITH FACEBOOK";
+var googleDisabled = isGoogleSignedIn? true :false;
+var facebookDisabled = false;
+
+const fbLogIn = () => {
+  facebookTextButton = 'Signed In';
+  facebookDisabled = true;
+  ReactDOM.render(<BasicDashboard />, document.getElementById('fb'));
+}
+
+const googleSignIn = () => {
+  googleButtonText = 'Signed In';
+  googleDisabled = true;
+  ReactDOM.render(<DashBoard />, document.getElementById('google'));
 }
 
 const Header = () => {
+
   return (
     <Container>
-      <h1>Google Analytics Dashboard</h1>
+      {console.log(isGoogleSignedIn)}
+      <h1>Analytics Dashboard</h1>
       {/* <FacebookLogin
-              appId="1079944885546437"
-              // autoLoad={true}
-              fields="name,email,picture"
-              icon="fa-facebook"
-              callback={fbSignIn}
-              disableMobileRedirect={true}
-            /> */}
+        appId="1079944885546437"
+        // autoLoad={true}
+        fields="name,email,picture"
+        icon="fa-facebook"
+        callback={fbLogIn}
+        disableMobileRedirect={true}
+        isDisabled={facebookDisabled}
+        textButton={facebookTextButton}
+      />
+      <GoogleLogin
+        clientId="366740137830-57qvr0ugck0uvber104q06toadigikt6.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
+        buttonText={googleButtonText}
+        onSuccess={googleSignIn}
+        disabled={googleDisabled}
+      // onFailure={responseGoogle}
+      /> */}
       <div className="signout" onClick={signOut}>
         SIGN OUT
       </div>
@@ -56,3 +80,4 @@ const Header = () => {
 };
 
 export default Header;
+export { fbLogIn };

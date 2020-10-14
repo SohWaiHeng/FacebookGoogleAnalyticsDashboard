@@ -7,4 +7,4 @@ ReactDOM.render(
         <BasicDashboard />
     </div>,
     document.getElementById('/test')
-)
+);

@@ -1,8 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import { Dropdown, UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { Bar } from 'react-chartjs-2';
-import FBHeader from '../../Components/fbHeader';
+import { useLocation } from 'react-router-dom';
+import Header from '../../Components/header';
 import App from '../../App';
+import FBHeader from '../../Components/fbHeader';
+import styles from './index.css';
 
 import {
     Row, Col,
@@ -167,6 +170,7 @@ var temp = {
         "other": 0
     }
 };
+const lineChartColour = '#ff5779';
 var fansCountryLifeTime = {};
 let genderAge7 = { 'M': [0, 0, 0, 0, 0, 0, 0], 'F': [0, 0, 0, 0, 0, 0, 0], 'U': [0, 0, 0, 0, 0, 0, 0] };
 let genderAge28 = { 'M': [0, 0, 0, 0, 0, 0, 0], 'F': [0, 0, 0, 0, 0, 0, 0], 'U': [0, 0, 0, 0, 0, 0, 0] };
@@ -433,6 +437,8 @@ export default class BasicDashboard extends Component {
 
     componentDidMount() {
 
+        console.log(2);
+
         var script = document.createElement('script');
 
         script.src = "https://connect.facebook.net/en_US/sdk.js";
@@ -442,36 +448,14 @@ export default class BasicDashboard extends Component {
 
         document.body.appendChild(script);
 
-        console.log('run here')
-
-        // var gid;
-
-        // function statusChangeCallback(response) {
-        //     console.log('statusChangeCallback');
-        //     console.log(response);
-
-        //     if (response.status === 'connected') {
-        //         getFBData();
-        //     } else {
-        //         document.getElementById('status').innerHTML = 'Please log ' +
-        //             'into this app.';
-        //     }
-        // }
-
-        // function checkLoginState() {
-        //     window.FB.getLoginStatus(function (response) {
-        //         statusChangeCallback(response);
-        //     });
-        // }
-
         window.fbAsyncInit = function () {
 
             window.FB.init({
                 appId: '1079944885546437',
                 // autoLogAppEvents: true,
-                cookie: true,
                 xfbml: true,
                 status: true,
+                cooie: true,
                 version: 'v8.0'
             });
 
@@ -512,6 +496,7 @@ export default class BasicDashboard extends Component {
         this.run();
 
     };
+
 
     run() {
         // var script = document.createElement('script');
@@ -581,11 +566,11 @@ export default class BasicDashboard extends Component {
 
         // };
 
-        getFBData();
+        wait(2 * 1000).then(() => { getFBData() } );
 
         function getFBData() {
 
-            let accesstoken = 'EAAPWNENHrcUBAM7zxKq2buk1PkbPdqBpTZCzbW3zYA3d0pnau7QfUg6Ii2x2ieZAmv0mwBIqEU0Dw0JGB6QTa8ZCHg79d56luGsFsfpdZAnZAO2gG94vsfXEZAlM7lKJjTSdIc5V2sszFSZBsvM6DHoxLJPrUXsS9B3jCEtkveA68xFQaFAjBBx6qKtGAgHC06NIdBZAcl05VgZDZD'
+            let accesstoken = 'EAAPWNENHrcUBAL7wEbbz6hkwkefArSez3wFMbVsXQ6gYsos5nMXe9eujaGtIakZCYnJ4t0PIVzfgj8nRGHNULzj5xaFZCUYYKqvz3g7PJUEBp78FtoJic7LNtShW5BWLqjySQXfmUdeiGvCZC7hL9kgYGiZC9HWPZCBeVv7xh0VQ9mVK5yKq1bs1pNuEA6UPds8GFtRfzOwZDZD'
 
             const now = Math.round(Date.now() / 1000);
             // around 90 days before
@@ -616,6 +601,7 @@ export default class BasicDashboard extends Component {
                     'GET',
                     { "access_token": accesstoken, "metric": insights, "since": before, "until": now },
                     function (response) {
+                        console.log(response);
                         callback(response);
                     }
                 )
@@ -900,17 +886,10 @@ export default class BasicDashboard extends Component {
                 console.log(maindata);
                 return maindata;
             })
+
         }
 
-        // (function (d, s, id) {
-        //     var js, fjs = d.getElementsByTagName(s)[0];
-        //     if (d.getElementById(id)) return;
-        //     js = d.createElement(s); js.id = id;
-        //     js.src = "https://connect.facebook.net/en_US/sdk.js";
-        //     fjs.parentNode.insertBefore(js, fjs);
-        // }(document, 'script', 'facebook-jssdk'));
-
-        wait(4 * 1000).then(() => {
+        wait(5 * 1000).then(() => {
             // let todaysValue = { 'ppe': parseFloat(maindata[Object.keys(maindata)[0]]['ppe']), 'pi': parseFloat(maindata[Object.keys(maindata)[0]]['pi']) }
             var metric;
             console.log(maindata)
@@ -929,6 +908,34 @@ export default class BasicDashboard extends Component {
             // progressValues: {'likeSourceToNumberOfFans': total7Days['likeSourceToNumberOfFans'], 'pifd': total7Days['pifd'], 'pvs': total7Days['pvs'], 'feedback': total7Days['feedback']}}
 
         })
+
+        // (function (d, s, id) {
+        //     var js, fjs = d.getElementsByTagName(s)[0];
+        //     if (d.getElementById(id)) return;
+        //     js = d.createElement(s); js.id = id;
+        //     js.src = "https://connect.facebook.net/en_US/sdk.js";
+        //     fjs.parentNode.insertBefore(js, fjs);
+        // }(document, 'script', 'facebook-jssdk'));
+
+        // wait(5 * 1000).then(() => {
+        //     // let todaysValue = { 'ppe': parseFloat(maindata[Object.keys(maindata)[0]]['ppe']), 'pi': parseFloat(maindata[Object.keys(maindata)[0]]['pi']) }
+        //     var metric;
+        //     console.log(maindata)
+        //     // while (maindata == []) this.run();
+        //     for (metric of metricsArray) {
+        //         todaysValue[metric] = parseFloat(maindata[Object.keys(maindata)[0]][metric])
+        //         difference[metric] = (parseFloat(maindata[Object.keys(maindata)[0]][metric]) - parseFloat(maindata[Object.keys(maindata)[1]][metric])) / parseFloat(maindata[Object.keys(maindata)[1]][metric]) * 100
+        //     }
+        //     // temp = JSON.parse(JSON.stringify(progressValues));
+        //     // console.log(outerGenderAge);
+        //     console.log(maindata)
+        //     console.log(temp);
+        //     this.setState({ data: maindata, todaysValue: todaysValue, difference: difference, progressValues: temp });
+        //     console.log(this.state.progressValues)
+        //     // try setting 1 by 1
+        //     // progressValues: {'likeSourceToNumberOfFans': total7Days['likeSourceToNumberOfFans'], 'pifd': total7Days['pifd'], 'pvs': total7Days['pvs'], 'feedback': total7Days['feedback']}}
+
+        // })
     }
 
     // componentWillMount() {
@@ -980,156 +987,165 @@ export default class BasicDashboard extends Component {
 
     logout = () => {
         // window.FB.getLoginStatus(() => {
-            window.FB.logout(function(response){
-                console.log("Logged Out!");
-                window.location = "/";
-              });
+        window.FB.logout(function (response) {
+            console.log("Logged Out!");
+            // const location = useLocation();
+            // console.log(location.pathname);
+            window.location = "/";
+        });
         // })
     }
 
     render() {
         return (
-            <Fragment>
-                <button onClick={this.logout}>Sign Out</button>
-                <Card>
-                    <CardBody>
-                        <Row >
-                            {metricsArray.map((value, index) => {
-                                return (
-                                    <Col lg="4" key={index}>
-                                        <div className="card mb-2 widget-chart">
-                                            <div className="widget-chart-content">
-                                                <UncontrolledButtonDropdown className="mb-2 mr-2">
-                                                    <DropdownToggle caret color="primary" className="mb-2 mr-2">
-                                                        Days
+            <>
+                <Fragment>
+                    {/* change the button wording etc */}
+                    {/* <Header facebookTextButton="Signed In" facebookDisabled="true" /> */}
+                    {/* <button onClick={this.logout}>Sign Out</button> */}
+                    <Row >
+                        {metricsArray.map((value, index) => {
+                            return (
+                                <Col lg="4" key={index}>
+                                    <div className="card" className={styles.card}>
+                                        <div className="card-body">
+                                            <div className="card mb-2 widget-chart">
+                                                <div className="widget-chart-content">
+                                                    <UncontrolledButtonDropdown className="mb-2 mr-2">
+                                                        <DropdownToggle caret color="primary" className="mb-2 mr-2">
+                                                            Days
                                                     </DropdownToggle>
-                                                    <DropdownMenu>
-                                                        <DropdownItem header>Choose the number of days</DropdownItem>
-                                                        {/* <DropdownItem onClick={() => { this.currentAll('ppe', this.state.obj, total28Days); console.log(this.state.obj); this.currentAll('ppe', this.state.num, 28); console.log(this.state.num); this.currentAll('ppe', this.state.todaysValue, (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']))); console.log(this.state.todaysValue); this.currentAll('ppe', (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']) - parseFloat(maindata[Object.keys(maindata)[1]]['ppe'])) / parseFloat(maindata[Object.keys(maindata)[1]]['ppe']) * 100, this.state.difference); console.log(this.state.difference); }}>dk Days</DropdownItem> */}
-                                                        <DropdownItem onClick={() => { this.current0(value, total7Days); console.log(this.state.obj); this.current1(value, 7); console.log(this.state.num); this.current2(value); console.log(this.state.todaysValue); this.current3(value); console.log(this.state.difference); }}>7 Days</DropdownItem>
-                                                        <DropdownItem onClick={() => { this.current0(value, total28Days); this.current1(value, 28); this.current2(value); this.current3(value); }}>28 Days</DropdownItem>
-                                                        <DropdownItem onClick={() => { this.current0(value, total90Days); this.current1(value, 90); this.current2(value); this.current3(value); }}>90 Days</DropdownItem>
-                                                    </DropdownMenu>
-                                                </UncontrolledButtonDropdown>
-                                                <div className="widget-numbers">
-                                                    {this.state.todaysValue[value]}
+                                                        <DropdownMenu>
+                                                            <DropdownItem header>Choose the number of days</DropdownItem>
+                                                            {/* <DropdownItem onClick={() => { this.currentAll('ppe', this.state.obj, total28Days); console.log(this.state.obj); this.currentAll('ppe', this.state.num, 28); console.log(this.state.num); this.currentAll('ppe', this.state.todaysValue, (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']))); console.log(this.state.todaysValue); this.currentAll('ppe', (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']) - parseFloat(maindata[Object.keys(maindata)[1]]['ppe'])) / parseFloat(maindata[Object.keys(maindata)[1]]['ppe']) * 100, this.state.difference); console.log(this.state.difference); }}>dk Days</DropdownItem> */}
+                                                            <DropdownItem onClick={() => { this.current0(value, total7Days); console.log(this.state.obj); this.current1(value, 7); console.log(this.state.num); this.current2(value); console.log(this.state.todaysValue); this.current3(value); console.log(this.state.difference); }}>7 Days</DropdownItem>
+                                                            <DropdownItem onClick={() => { this.current0(value, total28Days); this.current1(value, 28); this.current2(value); this.current3(value); }}>28 Days</DropdownItem>
+                                                            <DropdownItem onClick={() => { this.current0(value, total90Days); this.current1(value, 90); this.current2(value); this.current3(value); }}>90 Days</DropdownItem>
+                                                        </DropdownMenu>
+                                                    </UncontrolledButtonDropdown>
+                                                    <div className="widget-numbers">
+                                                        {this.state.todaysValue[value]}
+                                                    </div>
+                                                    <div className="widget-subheading">
+                                                        {metricsName[index]}
+                                                    </div>
+                                                    <div className={this.state.difference[value] > 0 ? "widget-description text-success" : "widget-description text-danger"}>
+                                                        <FontAwesomeIcon icon={this.state.difference[value] > 0 ? faAngleUp : faAngleDown} />
+                                                        <span className="pl-1">{(this.state.difference[value]).toFixed(2)}%</span>
+                                                    </div>
+                                                    <div className={styles.card}>
+                                                        <ResponsiveContainer height={160}>
+                                                            <AreaChart data={maindata.slice(0, this.state.num[value])} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
+                                                                <defs>
+                                                                    <linearGradient id="colorPv2" x1="0" y1="0" x2="0" y2="1">
+                                                                        <stop offset="10%" stopColor={lineChartColour} stopOpacity={0.7} />
+                                                                        <stop offset="90%" stopColor={lineChartColour} stopOpacity={0} />
+                                                                    </linearGradient>
+                                                                </defs>
+                                                                <Tooltip />
+                                                                <Area type='monotoneX' dataKey={value} stroke={lineChartColour} strokeWidth={2} fillOpacity={1}
+                                                                    fill="url(#colorPv2)" />
+                                                            </AreaChart>
+                                                        </ResponsiveContainer>
+                                                    </div>
                                                 </div>
-                                                <div className="widget-subheading">
-                                                    {metricsName[index]}
-                                                </div>
-                                                <div className={this.state.difference[value] > 0 ? "widget-description text-success" : "widget-description text-danger"}>
-                                                    <FontAwesomeIcon icon={this.state.difference[value] > 0 ? faAngleUp : faAngleDown} />
-                                                    <span className="pl-1">{(this.state.difference[value]).toFixed(2)}%</span>
-                                                </div>
-                                                <div>
-                                                    <ResponsiveContainer height={160}>
-                                                        <AreaChart data={maindata.slice(0, this.state.num[value])} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
-                                                            <defs>
-                                                                <linearGradient id="colorPv2" x1="0" y1="0" x2="0" y2="1">
-                                                                    <stop offset="10%" stopColor="var(--warning)" stopOpacity={0.7} />
-                                                                    <stop offset="90%" stopColor="var(--warning)" stopOpacity={0} />
-                                                                </linearGradient>
-                                                            </defs>
-                                                            <Tooltip />
-                                                            <Area type='monotoneX' dataKey={value} stroke='var(--warning)' strokeWidth={2} fillOpacity={1}
-                                                                fill="url(#colorPv2)" />
-                                                        </AreaChart>
-                                                    </ResponsiveContainer>
-                                                </div>
-                                            </div>
-                                            {/* <div className="widget-chart-wrapper chart-wrapper-relative"> */}
-                                            {/* <ResponsiveContainer height={100}>
+                                                {/* <div className="widget-chart-wrapper chart-wrapper-relative"> */}
+                                                {/* <ResponsiveContainer height={100}>
                                                         <LineChart data={maindata}
                                                             margin={{ top: 5, right: 5, left: 5, bottom: 0 }}>
                                                             <Line type='monotone' dataKey='ppe' stroke='#3ac47d'
                                                                 strokeWidth={3} />
                                                         </LineChart>
                                                     </ResponsiveContainer> */}
-                                        </div>
-                                    </Col>
-
-                                )
-                            })}
-                        </Row>
-                    </CardBody>
-                </Card>
-                <br></br>
-                <h2>Facebook Demographic Data</h2>
-                <Col lg="12">
-                    <Card className="main-card mb-3">
-                        <CardBody>
-                            <div>
-                                <UncontrolledButtonDropdown className="mb-2 mr-2">
-                                    <DropdownToggle caret color="primary" className="mb-2 mr-2">
-                                        Days
-                                    </DropdownToggle>
-                                    <DropdownMenu>
-                                        <DropdownItem header>Choose the number of days</DropdownItem>
-                                        {/* <DropdownItem onClick={() => { this.currentAll('ppe', this.state.obj, total28Days); console.log(this.state.obj); this.currentAll('ppe', this.state.num, 28); console.log(this.state.num); this.currentAll('ppe', this.state.todaysValue, (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']))); console.log(this.state.todaysValue); this.currentAll('ppe', (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']) - parseFloat(maindata[Object.keys(maindata)[1]]['ppe'])) / parseFloat(maindata[Object.keys(maindata)[1]]['ppe']) * 100, this.state.difference); console.log(this.state.difference); }}>dk Days</DropdownItem> */}
-                                        <DropdownItem onClick={() => { this.current4(genderAge7); }}>7 Days</DropdownItem>
-                                        <DropdownItem onClick={() => { this.current4(genderAge28); }}>28 Days</DropdownItem>
-                                        <DropdownItem onClick={() => { this.current4(genderAge90); }}>90 Days</DropdownItem>
-                                    </DropdownMenu>
-                                </UncontrolledButtonDropdown>
-                                <Bar
-                                    data={this.state.demographic}
-                                    width={50}
-                                    height={25}
-                                    options={{
-                                        barValueSpacing: 20,
-                                        scales: {
-                                            yAxes: [{
-                                                ticks: {
-                                                    beginAtZero: 0,
-                                                }
-                                            }]
-                                        }
-                                    }}
-                                />
-                            </div>
-                        </CardBody>
-                    </Card>
-                </Col>
-                <Card>
-                    <div>
-                        <Row>
-                            {Object.keys(this.state.progressValues).map((key) => {
-                                return (
-                                    <Col lg="6">
-                                        <div className="card mb-2 widget-chart">
-                                            <div className="widget-chart-content">
-                                                <CardBody>
-                                                    <h4>{key.toUpperCase()}</h4>
-                                                    <UncontrolledButtonDropdown className="mb-2 mr-2">
-                                                        <DropdownToggle caret color="primary" className="mb-2 mr-2">
-                                                            Days
-                                        </DropdownToggle>
-                                                        <DropdownMenu>
-                                                            <DropdownItem header>Choose the number of days</DropdownItem>
-                                                            {/* <DropdownItem onClick={() => { this.currentAll('ppe', this.state.obj, total28Days); console.log(this.state.obj); this.currentAll('ppe', this.state.num, 28); console.log(this.state.num); this.currentAll('ppe', this.state.todaysValue, (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']))); console.log(this.state.todaysValue); this.currentAll('ppe', (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']) - parseFloat(maindata[Object.keys(maindata)[1]]['ppe'])) / parseFloat(maindata[Object.keys(maindata)[1]]['ppe']) * 100, this.state.difference); console.log(this.state.difference); }}>dk Days</DropdownItem> */}
-                                                            <DropdownItem onClick={() => { this.current7(total7Days, key); this.current8(total7Days); }}>7 Days</DropdownItem>
-                                                            <DropdownItem onClick={() => { this.current7(total28Days, key); this.current8(total28Days); }}>28 Days</DropdownItem>
-                                                            <DropdownItem onClick={() => { this.current7(total90Days, key); this.current8(total90Days); }}>90 Days</DropdownItem>
-                                                        </DropdownMenu>
-                                                    </UncontrolledButtonDropdown>
-                                                    {Object.keys(this.state.progressValues[key]).map((key2) => {
-                                                        return (
-                                                            <div>
-                                                                <h5>{key2}</h5>
-                                                                <Progress className="mb-3" animated color={barColor[key]} value={this.state.progressValues[key][key2]}>{this.state.totalWhatDays[key][key2]}</Progress>
-                                                            </div>
-                                                        )
-                                                    })}
-                                                </CardBody>
                                             </div>
                                         </div>
-                                    </Col>
-                                )
-                            })}
-                        </Row>
-                    </div>
-                </Card>
-            </Fragment >
+                                    </div>
+                                </Col>
+
+                            )
+                        })}
+                    </Row>
+
+                    <br></br>
+                    <h2>Facebook Demographic Data</h2>
+                    <Col lg="12">
+                        <Card className="main-card mb-3">
+                            <CardBody>
+                                <div>
+                                    <UncontrolledButtonDropdown className="mb-2 mr-2">
+                                        <DropdownToggle caret color="primary" className="mb-2 mr-2">
+                                            Days
+                                    </DropdownToggle>
+                                        <DropdownMenu>
+                                            <DropdownItem header>Choose the number of days</DropdownItem>
+                                            {/* <DropdownItem onClick={() => { this.currentAll('ppe', this.state.obj, total28Days); console.log(this.state.obj); this.currentAll('ppe', this.state.num, 28); console.log(this.state.num); this.currentAll('ppe', this.state.todaysValue, (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']))); console.log(this.state.todaysValue); this.currentAll('ppe', (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']) - parseFloat(maindata[Object.keys(maindata)[1]]['ppe'])) / parseFloat(maindata[Object.keys(maindata)[1]]['ppe']) * 100, this.state.difference); console.log(this.state.difference); }}>dk Days</DropdownItem> */}
+                                            <DropdownItem onClick={() => { this.current4(genderAge7); }}>7 Days</DropdownItem>
+                                            <DropdownItem onClick={() => { this.current4(genderAge28); }}>28 Days</DropdownItem>
+                                            <DropdownItem onClick={() => { this.current4(genderAge90); }}>90 Days</DropdownItem>
+                                        </DropdownMenu>
+                                    </UncontrolledButtonDropdown>
+                                    <Bar
+                                        data={this.state.demographic}
+                                        width={50}
+                                        height={25}
+                                        options={{
+                                            barValueSpacing: 20,
+                                            scales: {
+                                                yAxes: [{
+                                                    ticks: {
+                                                        beginAtZero: 0,
+                                                    }
+                                                }]
+                                            }
+                                        }}
+                                    />
+                                </div>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                    <Card>
+                        <div>
+                            <Row>
+                                {Object.keys(this.state.progressValues).map((key) => {
+                                    return (
+                                        <Col lg="6">
+                                            <div className="card mb-2 widget-chart">
+                                                <div className="widget-chart-content">
+                                                    <CardBody>
+                                                        <h4>{key.toUpperCase()}</h4>
+                                                        <UncontrolledButtonDropdown className="mb-2 mr-2">
+                                                            <DropdownToggle caret color="primary" className="mb-2 mr-2">
+                                                                Days
+                                        </DropdownToggle>
+                                                            <DropdownMenu>
+                                                                <DropdownItem header>Choose the number of days</DropdownItem>
+                                                                {/* <DropdownItem onClick={() => { this.currentAll('ppe', this.state.obj, total28Days); console.log(this.state.obj); this.currentAll('ppe', this.state.num, 28); console.log(this.state.num); this.currentAll('ppe', this.state.todaysValue, (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']))); console.log(this.state.todaysValue); this.currentAll('ppe', (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']) - parseFloat(maindata[Object.keys(maindata)[1]]['ppe'])) / parseFloat(maindata[Object.keys(maindata)[1]]['ppe']) * 100, this.state.difference); console.log(this.state.difference); }}>dk Days</DropdownItem> */}
+                                                                <DropdownItem onClick={() => { this.current7(total7Days, key); this.current8(total7Days); }}>7 Days</DropdownItem>
+                                                                <DropdownItem onClick={() => { this.current7(total28Days, key); this.current8(total28Days); }}>28 Days</DropdownItem>
+                                                                <DropdownItem onClick={() => { this.current7(total90Days, key); this.current8(total90Days); }}>90 Days</DropdownItem>
+                                                            </DropdownMenu>
+                                                        </UncontrolledButtonDropdown>
+                                                        {Object.keys(this.state.progressValues[key]).map((key2) => {
+                                                            return (
+                                                                <div>
+                                                                    <h5>{key2}</h5>
+                                                                    <Progress className="mb-3" animated color={barColor[key]} value={this.state.progressValues[key][key2]}>{this.state.totalWhatDays[key][key2]}</Progress>
+                                                                </div>
+                                                            )
+                                                        })}
+                                                    </CardBody>
+                                                </div>
+                                            </div>
+                                        </Col>
+                                    )
+                                })}
+                            </Row>
+                        </div>
+                    </Card>
+
+                </Fragment >
+                {/* <div id='google'></div> */}
+            </>
         )
     }
 }

@@ -1,3 +1,5 @@
+import { isGoogleSignedIn } from '../App';
+
 const initAuth = () => {
   const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
   return window.gapi.auth2.init({
@@ -39,6 +41,13 @@ export const renderButton = () => {
   });
 };
 
+var signOutVar = false;
 export const signOut = () => {
   window.gapi.auth2.getAuthInstance().signOut();
+  signOutVar = true;
+};
+
+export const changeStatus = () => {
+  if (signOutVar == true) return false;
+  return true;
 };
