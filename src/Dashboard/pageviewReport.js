@@ -9,6 +9,7 @@ import {
   DatepickerRow,
   StyledTable,
 } from "./styles";
+import styles from './Basic/index.css';
 
 const PageviewsReport = (props) => {
   const [reportData, setReportData] = useState([]);
@@ -59,42 +60,46 @@ const PageviewsReport = (props) => {
   }, [startDate, endDate, props.viewID]);
 
   return (
-    <ReportWrapper>
-      <ChartTitle>Top 10 Pages by Views</ChartTitle>
-      <Subtitle>{`Total pages - ${totalPages}`}</Subtitle>
-      <DatepickerRow>
-        <CustomDatePicker
-          placeholder={"Start date"}
-          date={startDate}
-          handleDateChange={(date) => setStartDate(date)}
-        />
-        <CustomDatePicker
-          placeholder={"End date"}
-          date={endDate}
-          handleDateChange={(date) => setEndDate(date)}
-        />
-      </DatepickerRow>
-      {reportData.length && (
-        <StyledTable>
-          <thead>
-            <tr>
-              <th>Page</th>
-              <th>Views</th>
-              <th>%</th>
-            </tr>
-          </thead>
-          <tbody>
-            {reportData.map((row, id) => (
-              <tr key={id}>
-                <td className="left-align">{row.path}</td>
-                <td>{row.views}</td>
-                <td>{row.perc}</td>
-              </tr>
-            ))}
-          </tbody>
-        </StyledTable>
-      )}
-    </ReportWrapper>
+    <div className="card" className={styles.card}>
+      <div className="card-body">
+        <ReportWrapper>
+          <ChartTitle>Top 10 Pages by Views</ChartTitle>
+          <Subtitle>{`Total pages - ${totalPages}`}</Subtitle>
+          <DatepickerRow>
+            <CustomDatePicker
+              placeholder={"Start date"}
+              date={startDate}
+              handleDateChange={(date) => setStartDate(date)}
+            />
+            <CustomDatePicker
+              placeholder={"End date"}
+              date={endDate}
+              handleDateChange={(date) => setEndDate(date)}
+            />
+          </DatepickerRow>
+          {reportData.length && (
+            <StyledTable>
+              <thead>
+                <tr>
+                  <th>Page</th>
+                  <th>Views</th>
+                  <th>%</th>
+                </tr>
+              </thead>
+              <tbody>
+                {reportData.map((row, id) => (
+                  <tr key={id}>
+                    <td className="left-align">{row.path}</td>
+                    <td>{row.views}</td>
+                    <td>{row.perc}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </StyledTable>
+          )}
+        </ReportWrapper>
+      </div>
+    </div>
   );
 };
 

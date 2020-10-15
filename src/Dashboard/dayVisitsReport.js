@@ -11,6 +11,7 @@ import {
 import CustomDatePicker from "./datepicker";
 import { queryReport } from "./queryReport";
 import { formatDate } from "./utils";
+import styles from './Basic/index.css';
 
 const DayVisitsReport = (props) => {
   const INITIAL_STATE = {
@@ -104,27 +105,31 @@ const DayVisitsReport = (props) => {
   }, [startDate, endDate, displayResults, props.viewID, props.metric]);
 
   return (
-    <ReportWrapper>
-      <ChartTitle>{`${props.title} per day`}</ChartTitle>
-      <Subtitle>{`Average - ${average} ${props.title}`}</Subtitle>
-      <DatepickerRow>
-        <CustomDatePicker
-          placeholder={"Start date"}
-          date={startDate}
-          handleDateChange={(date) => setStartDate(date)}
-        />
-        <CustomDatePicker
-          placeholder={"End date"}
-          date={endDate}
-          handleDateChange={(date) => setEndDate(date)}
-        />
-      </DatepickerRow>
-      {reportData && (
-        <ChartWrapper>
-          <Line data={data} options={options} width={100} height={250} />
-        </ChartWrapper>
-      )}
-    </ReportWrapper>
+    <div className="card" className={styles.card}>
+      <div className="card-body">
+        <ReportWrapper>
+          <ChartTitle>{`${props.title} per day`}</ChartTitle>
+          <Subtitle>{`Average - ${average} ${props.title}`}</Subtitle>
+          <DatepickerRow>
+            <CustomDatePicker
+              placeholder={"Start date"}
+              date={startDate}
+              handleDateChange={(date) => setStartDate(date)}
+            />
+            <CustomDatePicker
+              placeholder={"End date"}
+              date={endDate}
+              handleDateChange={(date) => setEndDate(date)}
+            />
+          </DatepickerRow>
+          {reportData && (
+            <ChartWrapper>
+              <Line data={data} options={options} width={100} height={250} />
+            </ChartWrapper>
+          )}
+        </ReportWrapper>
+      </div>
+    </div>
   );
 };
 

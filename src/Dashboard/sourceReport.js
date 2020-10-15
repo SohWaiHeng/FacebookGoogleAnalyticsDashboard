@@ -12,6 +12,7 @@ import {
   ChartWrapper,
   colors,
 } from "./styles";
+import styles from './Basic/index.css';
 
 const SourceReport = (props) => {
   const INITIAL_STATE = {
@@ -180,27 +181,31 @@ const SourceReport = (props) => {
   }, [startDate, endDate, displayResults, props.viewID]);
 
   return (
-    <ReportWrapper>
-      <ChartTitle>Top 5 Sources of Visits</ChartTitle>
-      <Subtitle>{`Total sources - ${totalSources}`}</Subtitle>
-      <DatepickerRow>
-        <CustomDatePicker
-          placeholder={"Start date"}
-          date={startDate}
-          handleDateChange={(date) => setStartDate(date)}
-        />
-        <CustomDatePicker
-          placeholder={"End date"}
-          date={endDate}
-          handleDateChange={(date) => setEndDate(date)}
-        />
-      </DatepickerRow>
-      {reportData && (
-        <ChartWrapper>
-          <Bar data={data} width={100} height={250} options={options} />
-        </ChartWrapper>
-      )}
-    </ReportWrapper>
+    <div className="card" className={styles.card}>
+      <div className="card-body">
+        <ReportWrapper>
+          <ChartTitle>Top 5 Sources of Visits</ChartTitle>
+          <Subtitle>{`Total sources - ${totalSources}`}</Subtitle>
+          <DatepickerRow>
+            <CustomDatePicker
+              placeholder={"Start date"}
+              date={startDate}
+              handleDateChange={(date) => setStartDate(date)}
+            />
+            <CustomDatePicker
+              placeholder={"End date"}
+              date={endDate}
+              handleDateChange={(date) => setEndDate(date)}
+            />
+          </DatepickerRow>
+          {reportData && (
+            <ChartWrapper>
+              <Bar data={data} width={100} height={250} options={options} />
+            </ChartWrapper>
+          )}
+        </ReportWrapper>
+      </div>
+    </div>
   );
 };
 

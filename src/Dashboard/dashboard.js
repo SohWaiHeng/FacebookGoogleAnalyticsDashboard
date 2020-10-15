@@ -10,6 +10,7 @@ import { LastRow } from "./styles";
 import InputField from "../Components/input";
 import BasicDashboard from './Basic/index.js';
 import { isLogIn, fbLogIn } from '../Components/header.js';
+import styles from './Basic/index.css';
 
 const responseFacebook = (response) => {
   console.log(response);
@@ -24,7 +25,7 @@ const DashBoard = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <DayVisitsReport
         metric={"ga:users"}
         title={"Users"}
@@ -38,12 +39,16 @@ const DashBoard = () => {
       <CountriesReport viewID={viewID} />
       <PageviewsReport viewID={viewID} />
       <SourceReport viewID={viewID} />
-      <LastRow>
-        <BrowsersReport viewID={viewID} />
-        <DevicesReport viewID={viewID} />
-      </LastRow>
-      {/* {isFBLogIn? <BasicDashboard id='fb' />: ''} */}
-      {/* <div id='fb'></div> */}
+      <div className="card" className={styles.card}>
+        <div className="card-body">
+        <LastRow>
+          <BrowsersReport viewID={viewID} />
+          <DevicesReport viewID={viewID} />
+        </LastRow>
+      </div>
+    </div>
+      {/* {isFBLogIn? <BasicDashboard id='fb' />: ''} */ }
+  {/* <div id='fb'></div> */ }
     </>
   );
 };

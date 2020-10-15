@@ -4,6 +4,7 @@ import { Pie } from "react-chartjs-2";
 import CustomDatePicker from "./datepicker";
 import { queryReport } from "./queryReport";
 import { ChartTitle, Subtitle, PieChartWrapper, colors } from "./styles";
+import styles from './Basic/index.css';
 
 const BrowsersReport = (props) => {
   const INITIAL_STATE = {
@@ -77,24 +78,24 @@ const BrowsersReport = (props) => {
 
   return (
     <div>
-      <ChartTitle>Browsers by Users</ChartTitle>
-      <Subtitle>{`Total Users - ${totalUsers}`}</Subtitle>
-      <CustomDatePicker
-        placeholder={"Start date"}
-        date={startDate}
-        handleDateChange={(date) => setStartDate(date)}
-      />
-      <CustomDatePicker
-        placeholder={"End date"}
-        date={endDate}
-        handleDateChange={(date) => setEndDate(date)}
-      />
-      {reportData && (
-        <PieChartWrapper>
-          <Pie data={data} options={options} width={300} height={300} />
-        </PieChartWrapper>
-      )}
-    </div>
+        <ChartTitle>Browsers by Users</ChartTitle>
+        <Subtitle>{`Total Users - ${totalUsers}`}</Subtitle>
+        <CustomDatePicker
+          placeholder={"Start date"}
+          date={startDate}
+          handleDateChange={(date) => setStartDate(date)}
+        />
+        <CustomDatePicker
+          placeholder={"End date"}
+          date={endDate}
+          handleDateChange={(date) => setEndDate(date)}
+        />
+        {reportData && (
+          <PieChartWrapper>
+            <Pie data={data} options={options} width={300} height={300} />
+          </PieChartWrapper>
+        )}
+      </div>
   );
 };
 

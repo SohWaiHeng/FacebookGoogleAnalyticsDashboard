@@ -43,7 +43,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 var maindata = [];
 var total7Days = {
-    'likeSourceToNumberOfFans': {
+    // likesourcetonumberoffans
+    'Likes Sources': {
         "Ads": 0,
         "News Feed": 0,
         "Page Suggestions": 0,
@@ -52,7 +53,8 @@ var total7Days = {
         "Your Page": 0,
         "Other": 0
     },
-    'pifd': {
+    // pifd
+    'Page Impressions Frequency': {
         "1": 0,
         "2": 0,
         "3": 0,
@@ -62,12 +64,14 @@ var total7Days = {
         "11-20": 0,
         "21+": 0
     },
-    'pvs': {
+    // pvs
+    'Page View Sites': {
         "WWW": 0,
         "MOBILE": 0,
         "OTHER": 0
     },
-    'feedback': {
+    // feedback
+    'Fans Impressions': {
         "link": 0,
         "like": 0,
         "comment": 0,
@@ -75,7 +79,8 @@ var total7Days = {
     }
 };
 var total28Days = {
-    'likeSourceToNumberOfFans': {
+    // likesourcetonumberoffans
+    'Likes Sources': {
         "Ads": 0,
         "News Feed": 0,
         "Page Suggestions": 0,
@@ -84,7 +89,8 @@ var total28Days = {
         "Your Page": 0,
         "Other": 0
     },
-    'pifd': {
+    // pifd
+    'Page Impressions Frequency': {
         "1": 0,
         "2": 0,
         "3": 0,
@@ -94,12 +100,14 @@ var total28Days = {
         "11-20": 0,
         "21+": 0
     },
-    'pvs': {
+    // pvs
+    'Page View Sites': {
         "WWW": 0,
         "MOBILE": 0,
         "OTHER": 0
     },
-    'feedback': {
+    // feedback
+    'Fans Impressions': {
         "link": 0,
         "like": 0,
         "comment": 0,
@@ -107,7 +115,8 @@ var total28Days = {
     }
 };
 var total90Days = {
-    'likeSourceToNumberOfFans': {
+    // likesourcetonumberoffans
+    'Likes Sources': {
         "Ads": 0,
         "News Feed": 0,
         "Page Suggestions": 0,
@@ -116,7 +125,8 @@ var total90Days = {
         "Your Page": 0,
         "Other": 0
     },
-    'pifd': {
+    // pifd
+    'Page Impressions Frequency': {
         "1": 0,
         "2": 0,
         "3": 0,
@@ -126,12 +136,14 @@ var total90Days = {
         "11-20": 0,
         "21+": 0
     },
-    'pvs': {
+    // pvs
+    'Page View Sites': {
         "WWW": 0,
         "MOBILE": 0,
         "OTHER": 0
     },
-    'feedback': {
+    // feedback
+    'Fans Impressions': {
         "link": 0,
         "like": 0,
         "comment": 0,
@@ -139,7 +151,8 @@ var total90Days = {
     }
 };
 var temp = {
-    'likeSourceToNumberOfFans': {
+    // likesourcetonumberoffans
+    'Likes Sources': {
         "Ads": 0,
         "News Feed": 0,
         "Page Suggestions": 0,
@@ -148,7 +161,8 @@ var temp = {
         "Your Page": 0,
         "Other": 0
     },
-    'pifd': {
+    // pifd
+    'Page Impressions Frequency': {
         "1": 0,
         "2": 0,
         "3": 0,
@@ -158,12 +172,14 @@ var temp = {
         "11-20": 0,
         "21+": 0
     },
-    'pvs': {
+    // pvs
+    'Page View Sites': {
         "WWW": 0,
         "MOBILE": 0,
         "OTHER": 0
     },
-    'feedback': {
+    // feedback
+    'Fans Impressions': {
         "link": 0,
         "like": 0,
         "comment": 0,
@@ -177,11 +193,12 @@ let genderAge28 = { 'M': [0, 0, 0, 0, 0, 0, 0], 'F': [0, 0, 0, 0, 0, 0, 0], 'U':
 let genderAge90 = { 'M': [0, 0, 0, 0, 0, 0, 0], 'F': [0, 0, 0, 0, 0, 0, 0], 'U': [0, 0, 0, 0, 0, 0, 0] };
 var difference = {};
 var todaysValue = {};
-const barColor = { 'likeSourceToNumberOfFans': 'success', 'pifd': 'info', 'pvs': 'warning', 'feedback': 'danger' }
+const barColor = { 'Likes Sources': 'success', 'Page Impressions Frequency': 'info', 'Page View Sites': 'warning', 'Fans Impressions': 'danger' }
 const metricsArray = ['ppe', 'pi', 'pfn', 'pc', 'pvt', 'like'];
 const metricsName = ['Page Engagement', 'Post Impressions', 'New Fans', 'Page Consumptions', 'Page View Total', 'Number of Likes'];
 var progressValues = {
-    'likeSourceToNumberOfFans': {
+    // likesourcetonumberoffans
+    'Likes Sources': {
         "Ads": 0,
         "News Feed": 0,
         "Page Suggestions": 0,
@@ -190,7 +207,8 @@ var progressValues = {
         "Your Page": 0,
         "Other": 0
     },
-    'pifd': {
+    // pifd
+    'Page Impressions Frequency': {
         "1": 0,
         "2": 0,
         "3": 0,
@@ -200,12 +218,14 @@ var progressValues = {
         "11-20": 0,
         "21+": 0
     },
-    'pvs': {
+    // pvs
+    'Page View Sites': {
         "WWW": 0,
         "MOBILE": 0,
         "OTHER": 0
     },
-    'feedback': {
+    // feedback
+    'Fans Impressions': {
         "link": 0,
         "like": 0,
         "comment": 0,
@@ -266,36 +286,40 @@ export default class BasicDashboard extends Component {
                 ]
             },
             progressValues: {
-                'likeSourceToNumberOfFans': {
-                    "Ads": 0,
-                    "News Feed": 0,
-                    "Page Suggestions": 0,
-                    "Restored Likes from Reactivated Accounts": 0,
-                    "Search": 0,
-                    "Your Page": 0,
-                    "Other": 0
-                },
-                'pifd': {
-                    "1": 0,
-                    "2": 0,
-                    "3": 0,
-                    "4": 0,
-                    "5": 0,
-                    "6-10": 0,
-                    "11-20": 0,
-                    "21+": 0
-                },
-                'pvs': {
-                    "WWW": 0,
-                    "MOBILE": 0,
-                    "OTHER": 0
-                },
-                'feedback': {
-                    "link": 0,
-                    "like": 0,
-                    "comment": 0,
-                    "other": 0
-                }
+                // likesourcetonumberoffans
+    'Likes Sources': {
+        "Ads": 0,
+        "News Feed": 0,
+        "Page Suggestions": 0,
+        "Restored Likes from Reactivated Accounts": 0,
+        "Search": 0,
+        "Your Page": 0,
+        "Other": 0
+    },
+    // pifd
+    'Page Impressions Frequency': {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6-10": 0,
+        "11-20": 0,
+        "21+": 0
+    },
+    // pvs
+    'Page View Sites': {
+        "WWW": 0,
+        "MOBILE": 0,
+        "OTHER": 0
+    },
+    // feedback
+    'Fans Impressions': {
+        "link": 0,
+        "like": 0,
+        "comment": 0,
+        "other": 0
+    }
             }
 
         };
@@ -566,11 +590,11 @@ export default class BasicDashboard extends Component {
 
         // };
 
-        wait(2 * 1000).then(() => { getFBData() } );
+        wait(2 * 1000).then(() => { getFBData() });
 
         function getFBData() {
 
-            let accesstoken = 'EAAPWNENHrcUBAL7wEbbz6hkwkefArSez3wFMbVsXQ6gYsos5nMXe9eujaGtIakZCYnJ4t0PIVzfgj8nRGHNULzj5xaFZCUYYKqvz3g7PJUEBp78FtoJic7LNtShW5BWLqjySQXfmUdeiGvCZC7hL9kgYGiZC9HWPZCBeVv7xh0VQ9mVK5yKq1bs1pNuEA6UPds8GFtRfzOwZDZD'
+            let accesstoken = 'EAAPWNENHrcUBABgZApIizTtAPJRza1nMSgaVMCakUxaizSqjWjz4itoCiKoGMzHJzxWtSNk9djhNc59IY5ZAgugX1UZAXHWxinRsWty6vq27j1GQJ05hNhygvViLBSpQJ4OMJJhgVJ8hGm6uKBaEVbORf3nP83hvd3DZC2MC7gYJCGY6qYOYNHY53Dd1pP8PndZASOnu4igZDZD'
 
             const now = Math.round(Date.now() / 1000);
             // around 90 days before
@@ -800,7 +824,7 @@ export default class BasicDashboard extends Component {
 
                         case 'page_views_by_site_logged_in_unique':
                             if (res.data[i].period == 'day') {
-                                pageViewsBySite.updateAdvancedData(res.data[i], 'pvs');
+                                pageViewsBySite.updateAdvancedData(res.data[i], 'Page View Sites');
                             }
                             break;
 
@@ -834,12 +858,12 @@ export default class BasicDashboard extends Component {
                             break;
 
                         case 'page_fans_by_like_source':
-                            fansByLikeSource.updateAdvancedData(res.data[i], 'likeSourceToNumberOfFans');
+                            fansByLikeSource.updateAdvancedData(res.data[i], 'Likes Sources');
                             break;
 
                         case 'page_impressions_frequency_distribution':
                             if (res.data[i].period == 'day') {
-                                pageImpressionsFrequencyDistribution.updateAdvancedData(res.data[i], 'pifd');
+                                pageImpressionsFrequencyDistribution.updateAdvancedData(res.data[i], 'Page Impressions Frequency');
                             }
                             break;
 
@@ -873,7 +897,7 @@ export default class BasicDashboard extends Component {
 
                         case 'page_positive_feedback_by_type':
                             if (res.data[i].period == 'day') {
-                                postReactions.updateAdvancedData(res.data[i], 'feedback');
+                                postReactions.updateAdvancedData(res.data[i], 'Fans Impressions');
                             }
                             break;
 
@@ -1103,45 +1127,43 @@ export default class BasicDashboard extends Component {
                             </CardBody>
                         </Card>
                     </Col>
-                    <Card>
-                        <div>
                             <Row>
                                 {Object.keys(this.state.progressValues).map((key) => {
                                     return (
                                         <Col lg="6">
-                                            <div className="card mb-2 widget-chart">
-                                                <div className="widget-chart-content">
-                                                    <CardBody>
-                                                        <h4>{key.toUpperCase()}</h4>
-                                                        <UncontrolledButtonDropdown className="mb-2 mr-2">
-                                                            <DropdownToggle caret color="primary" className="mb-2 mr-2">
-                                                                Days
-                                        </DropdownToggle>
-                                                            <DropdownMenu>
-                                                                <DropdownItem header>Choose the number of days</DropdownItem>
-                                                                {/* <DropdownItem onClick={() => { this.currentAll('ppe', this.state.obj, total28Days); console.log(this.state.obj); this.currentAll('ppe', this.state.num, 28); console.log(this.state.num); this.currentAll('ppe', this.state.todaysValue, (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']))); console.log(this.state.todaysValue); this.currentAll('ppe', (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']) - parseFloat(maindata[Object.keys(maindata)[1]]['ppe'])) / parseFloat(maindata[Object.keys(maindata)[1]]['ppe']) * 100, this.state.difference); console.log(this.state.difference); }}>dk Days</DropdownItem> */}
-                                                                <DropdownItem onClick={() => { this.current7(total7Days, key); this.current8(total7Days); }}>7 Days</DropdownItem>
-                                                                <DropdownItem onClick={() => { this.current7(total28Days, key); this.current8(total28Days); }}>28 Days</DropdownItem>
-                                                                <DropdownItem onClick={() => { this.current7(total90Days, key); this.current8(total90Days); }}>90 Days</DropdownItem>
-                                                            </DropdownMenu>
-                                                        </UncontrolledButtonDropdown>
-                                                        {Object.keys(this.state.progressValues[key]).map((key2) => {
-                                                            return (
-                                                                <div>
-                                                                    <h5>{key2}</h5>
-                                                                    <Progress className="mb-3" animated color={barColor[key]} value={this.state.progressValues[key][key2]}>{this.state.totalWhatDays[key][key2]}</Progress>
-                                                                </div>
-                                                            )
-                                                        })}
-                                                    </CardBody>
+                                            <div className="card" className={styles.card}>
+                                                <div className="card-body">
+                                                    <div className="card mb-2 widget-chart">
+                                                        <div className="widget-chart-content">
+                                                                <h4>{key.toUpperCase()}</h4>
+                                                                <UncontrolledButtonDropdown className="mb-2 mr-2">
+                                                                    <DropdownToggle caret color="primary" className="mb-2 mr-2">
+                                                                        Days
+                                                                    </DropdownToggle>
+                                                                    <DropdownMenu>
+                                                                        <DropdownItem header>Choose the number of days</DropdownItem>
+                                                                        {/* <DropdownItem onClick={() => { this.currentAll('ppe', this.state.obj, total28Days); console.log(this.state.obj); this.currentAll('ppe', this.state.num, 28); console.log(this.state.num); this.currentAll('ppe', this.state.todaysValue, (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']))); console.log(this.state.todaysValue); this.currentAll('ppe', (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']) - parseFloat(maindata[Object.keys(maindata)[1]]['ppe'])) / parseFloat(maindata[Object.keys(maindata)[1]]['ppe']) * 100, this.state.difference); console.log(this.state.difference); }}>dk Days</DropdownItem> */}
+                                                                        <DropdownItem onClick={() => { this.current7(total7Days, key); this.current8(total7Days); }}>7 Days</DropdownItem>
+                                                                        <DropdownItem onClick={() => { this.current7(total28Days, key); this.current8(total28Days); }}>28 Days</DropdownItem>
+                                                                        <DropdownItem onClick={() => { this.current7(total90Days, key); this.current8(total90Days); }}>90 Days</DropdownItem>
+                                                                    </DropdownMenu>
+                                                                </UncontrolledButtonDropdown>
+                                                                {Object.keys(this.state.progressValues[key]).map((key2) => {
+                                                                    return (
+                                                                        <div>
+                                                                            <h5>{key2}</h5>
+                                                                            <Progress className="mb-3" animated color={barColor[key]} value={this.state.progressValues[key][key2]}>{this.state.totalWhatDays[key][key2]}</Progress>
+                                                                        </div>
+                                                                    )
+                                                                })}
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </Col>
                                     )
                                 })}
                             </Row>
-                        </div>
-                    </Card>
 
                 </Fragment >
                 {/* <div id='google'></div> */}

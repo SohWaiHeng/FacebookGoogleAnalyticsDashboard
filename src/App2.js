@@ -5,14 +5,13 @@ import { renderButton, checkSignedIn, changeStatus } from "./GoogleAuth/authUtil
 import DashBoard from "./Dashboard/dashboard";
 import styled from "styled-components";
 import FacebookLogin from 'react-facebook-login';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import GoogleLogin from 'react-google-login';
 import DashboardFB from './Dashboard/dashboardFB';
 import BasicDashboard from './Dashboard/Basic/index.js';
 import isLogIn from './Components/header.js';
-import GoogleBtn from './googleBtn.js';
-import FacebookBtn from './facebookBtn.js';
+// import changeStatus from "./GoogleAuth/authUtils";
 
-var isGoogleSignedIn = false;
+var isGoogleSignedIn = changeStatus();
 
 function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -52,7 +51,7 @@ function App() {
 
   const googleSignIn = () => {
     isGoogleSignedIn = true;
-    setIsSignedIn(true);
+    // setIsSignedIn(true);
     ReactDOM.render(
       <div>
         <DashBoard />
@@ -67,19 +66,16 @@ function App() {
           <br></br>
           <br></br>
           {/* <Title>Google Analytics Dashboard</Title> */}
-          <GoogleBtn />
-          <br></br>
-          <FacebookBtn />
-            {/* <GoogleLogin
+            <GoogleLogin
               clientId="366740137830-57qvr0ugck0uvber104q06toadigikt6.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
               buttonText="LOGIN WITH GOOGLE"
               onSuccess={googleSignIn}
-            /> */}
+            />
             {/* <ButtonContainer>
             <div id="signin-button"></div>
-          </ButtonContainer> */}
-          {/* <button onClick={fbSignIn}>View FB data</button> */}
-          {/* <ButtonContainer>
+          </ButtonContainer>
+          <button onClick={fbSignIn}>View FB data</button> */}
+          <ButtonContainer>
             <br></br>
             <br></br>
             <div>
@@ -92,7 +88,7 @@ function App() {
                 disableMobileRedirect={true}
               />
             </div>
-          </ButtonContainer> */}
+          </ButtonContainer>
         </>
       {/* ) : '' */}
        {/* (isSignedIn ?

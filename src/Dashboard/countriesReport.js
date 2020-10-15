@@ -6,6 +6,7 @@ import CustomDatePicker from "./datepicker";
 import { queryReport } from "./queryReport";
 import { ChartTitle, ReportWrapper, Subtitle, DatepickerRow } from "./styles";
 import "chartjs-plugin-datalabels";
+import styles from './Basic/index.css';
 
 const CountriesReport = (props) => {
   const INITIAL_STATE = {
@@ -95,27 +96,31 @@ const CountriesReport = (props) => {
   }, [startDate, endDate, displayResults, props.viewID]);
 
   return (
-    <ReportWrapper>
-      <ChartTitle>Top 5 Countries by Users</ChartTitle>
-      <Subtitle>{`Total countries - ${totalCoutries}`}</Subtitle>
-      <DatepickerRow>
-        <CustomDatePicker
-          placeholder={"Start date"}
-          date={startDate}
-          handleDateChange={(date) => setStartDate(date)}
-        />
-        <CustomDatePicker
-          placeholder={"End date"}
-          date={endDate}
-          handleDateChange={(date) => setEndDate(date)}
-        />
-      </DatepickerRow>
-      {reportData && (
-        <PieChartWrapper>
-          <Pie data={data} options={options} />
-        </PieChartWrapper>
-      )}
-    </ReportWrapper>
+    <div className="card" className={styles.card}>
+      <div className="card-body">
+        <ReportWrapper>
+          <ChartTitle>Top 5 Countries by Users</ChartTitle>
+          <Subtitle>{`Total countries - ${totalCoutries}`}</Subtitle>
+          <DatepickerRow>
+            <CustomDatePicker
+              placeholder={"Start date"}
+              date={startDate}
+              handleDateChange={(date) => setStartDate(date)}
+            />
+            <CustomDatePicker
+              placeholder={"End date"}
+              date={endDate}
+              handleDateChange={(date) => setEndDate(date)}
+            />
+          </DatepickerRow>
+          {reportData && (
+            <PieChartWrapper>
+              <Pie data={data} options={options} />
+            </PieChartWrapper>
+          )}
+        </ReportWrapper>
+      </div>
+    </div>
   );
 };
 

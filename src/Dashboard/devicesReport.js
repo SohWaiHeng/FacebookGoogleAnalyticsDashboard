@@ -4,6 +4,7 @@ import { Doughnut } from "react-chartjs-2";
 import CustomDatePicker from "./datepicker";
 import { queryReport } from "./queryReport";
 import { ChartTitle, Subtitle, PieChartWrapper, colors } from "./styles";
+// import styles from './Basic/index.css';
 
 const DevicesReport = (props) => {
   const INITIAL_STATE = {
@@ -75,24 +76,24 @@ const DevicesReport = (props) => {
 
   return (
     <div>
-      <ChartTitle>Devices by Users</ChartTitle>
-      <Subtitle>{`Total Users - ${totalUsers}`}</Subtitle>
-      <CustomDatePicker
-        placeholder={"Start date"}
-        date={startDate}
-        handleDateChange={(date) => setStartDate(date)}
-      />
-      <CustomDatePicker
-        placeholder={"End date"}
-        date={endDate}
-        handleDateChange={(date) => setEndDate(date)}
-      />
-      {reportData && (
-        <PieChartWrapper>
-          <Doughnut data={data} options={options} width={300} height={300} />
-        </PieChartWrapper>
-      )}
-    </div>
+        <ChartTitle>Devices by Users</ChartTitle>
+        <Subtitle>{`Total Users - ${totalUsers}`}</Subtitle>
+        <CustomDatePicker
+          placeholder={"Start date"}
+          date={startDate}
+          handleDateChange={(date) => setStartDate(date)}
+        />
+        <CustomDatePicker
+          placeholder={"End date"}
+          date={endDate}
+          handleDateChange={(date) => setEndDate(date)}
+        />
+        {reportData && (
+          <PieChartWrapper>
+            <Doughnut data={data} options={options} width={300} height={300} />
+          </PieChartWrapper>
+        )}
+        </div>
   );
 };
 

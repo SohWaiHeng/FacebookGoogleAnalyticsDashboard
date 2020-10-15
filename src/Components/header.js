@@ -55,7 +55,7 @@ const Header = () => {
     <Container>
       {console.log(isGoogleSignedIn)}
       <h1>Analytics Dashboard</h1>
-      {/* <FacebookLogin
+      <FacebookLogin
         appId="1079944885546437"
         // autoLoad={true}
         fields="name,email,picture"
@@ -71,7 +71,7 @@ const Header = () => {
         onSuccess={googleSignIn}
         disabled={googleDisabled}
       // onFailure={responseGoogle}
-      /> */}
+      />
       <div className="signout" onClick={signOut}>
         SIGN OUT
       </div>
