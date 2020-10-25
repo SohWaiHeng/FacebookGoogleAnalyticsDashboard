@@ -186,7 +186,7 @@ var temp = {
         "other": 0
     }
 };
-const lineChartColour = '#ff5779';
+const lineChartColour = '#2ad2c9';
 var fansCountryLifeTime = {};
 let genderAge7 = { 'M': [0, 0, 0, 0, 0, 0, 0], 'F': [0, 0, 0, 0, 0, 0, 0], 'U': [0, 0, 0, 0, 0, 0, 0] };
 let genderAge28 = { 'M': [0, 0, 0, 0, 0, 0, 0], 'F': [0, 0, 0, 0, 0, 0, 0], 'U': [0, 0, 0, 0, 0, 0, 0] };
@@ -255,22 +255,22 @@ export default class BasicDashboard extends Component {
                 datasets: [
                     {
                         label: 'Male',
-                        backgroundColor: 'rgba(255,99,132,0.2)',
-                        borderColor: 'rgba(255,99,132,1)',
+                        backgroundColor: 'rgba(146, 202, 242,0.2)',
+                        borderColor: 'rgba(38,150,228,1)',
                         borderWidth: 1,
-                        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-                        hoverBorderColor: 'rgba(255,99,132,1)',
+                        hoverBackgroundColor: 'rgba(146, 202, 242,0.4)',
+                        hoverBorderColor: 'rgba(38,150,228,1)',
                         borderCapStyle: 'round',
                         data: genderAge7['M']
                     },
                     {
                         label: 'Female',
-                        backgroundColor: 'rgba(155,231,91,0.2)',
-                        borderColor: 'rgba(5,190,132,1)',
+                        backgroundColor: 'rgba(255, 87, 121,0.2)',
+                        borderColor: 'rgba(255,87,122,1)',
                         borderWidth: 1,
                         stack: 1,
-                        hoverBackgroundColor: 'rgba(5,190,132,1)',
-                        hoverBorderColor: 'rgba(255,99,132,1)',
+                        hoverBackgroundColor: 'rgba(255,171,188,1)',
+                        hoverBorderColor: 'rgba(255,87,122,1)',
                         data: genderAge7['F']
                     },
                     {
@@ -594,7 +594,7 @@ export default class BasicDashboard extends Component {
 
         function getFBData() {
 
-            let accesstoken = 'EAAPWNENHrcUBABgZApIizTtAPJRza1nMSgaVMCakUxaizSqjWjz4itoCiKoGMzHJzxWtSNk9djhNc59IY5ZAgugX1UZAXHWxinRsWty6vq27j1GQJ05hNhygvViLBSpQJ4OMJJhgVJ8hGm6uKBaEVbORf3nP83hvd3DZC2MC7gYJCGY6qYOYNHY53Dd1pP8PndZASOnu4igZDZD'
+            let accesstoken = 'EAAPWNENHrcUBAOPmHN2eyr2HYmXToHeAmtcBQjgsZCZC3wdvwFCAvxdb55giMECsZCs2FZBqAcFuzma2lBfYezrORmNxw52NxZAIRI5g1yHYPWJeQXHuYoteXqGQiNII63eQYUqfHU8x2U6tEYjcRZAbdoTk22NWrOz4TGuuV6h7d0sVskJAQ0ZC6oPa6parPcm5hPedJPTewZDZD'
 
             const now = Math.round(Date.now() / 1000);
             // around 90 days before
@@ -1034,7 +1034,7 @@ export default class BasicDashboard extends Component {
                                     <div className="card" className={styles.card}>
                                         <div className="card-body">
                                             <div className="card mb-2 widget-chart">
-                                                <div className="widget-chart-content">
+                                                <div className="widget-chart-content"><br />
                                                     <UncontrolledButtonDropdown className="mb-2 mr-2">
                                                         <DropdownToggle caret color="primary" className="mb-2 mr-2">
                                                             Days
@@ -1047,11 +1047,11 @@ export default class BasicDashboard extends Component {
                                                             <DropdownItem onClick={() => { this.current0(value, total90Days); this.current1(value, 90); this.current2(value); this.current3(value); }}>90 Days</DropdownItem>
                                                         </DropdownMenu>
                                                     </UncontrolledButtonDropdown>
-                                                    <div className="widget-numbers">
-                                                        {this.state.todaysValue[value]}
-                                                    </div>
                                                     <div className="widget-subheading">
                                                         {metricsName[index]}
+                                                    </div>
+                                                    <div className="widget-numbers">
+                                                        {this.state.todaysValue[value]}
                                                     </div>
                                                     <div className={this.state.difference[value] > 0 ? "widget-description text-success" : "widget-description text-danger"}>
                                                         <FontAwesomeIcon icon={this.state.difference[value] > 0 ? faAngleUp : faAngleDown} />
@@ -1093,7 +1093,7 @@ export default class BasicDashboard extends Component {
                     <br></br>
                     <h2>Facebook Demographic Data</h2>
                     <Col lg="12">
-                        <Card className="main-card mb-3">
+                        <Card className="main-card mb-3 w-50">
                             <CardBody>
                                 <div>
                                     <UncontrolledButtonDropdown className="mb-2 mr-2">
@@ -1132,7 +1132,7 @@ export default class BasicDashboard extends Component {
                                     return (
                                         <Col lg="6">
                                             <div className="card" className={styles.card}>
-                                                <div className="card-body">
+                                                <div className="card-body ">
                                                     <div className="card mb-2 widget-chart">
                                                         <div className="widget-chart-content">
                                                                 <h4>{key.toUpperCase()}</h4>
