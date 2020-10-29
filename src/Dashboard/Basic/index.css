@@ -2,6 +2,10 @@ body {
     background-color: '#eeecec';
 }
 
+div {
+    padding: 2px 2px 2px 2px;
+}
+
 .card{
     background-color: '#eeecec';
 }

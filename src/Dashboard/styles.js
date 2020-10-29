@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ChartWrapper = styled.div`
-  width: 80vw;
+  width: 40vw;
   margin: 0 auto;
 `;
 
@@ -64,7 +64,7 @@ export const LastRow = styled.div`
 `;
 
 export const DatepickerRow = styled.div`
-  width: 60vw;
+  width: 30vw; 
   display: flex;
   justify-content: space-evenly;
   margin: 0 auto;

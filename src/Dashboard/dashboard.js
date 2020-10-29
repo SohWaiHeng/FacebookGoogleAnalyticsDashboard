@@ -10,6 +10,7 @@ import { LastRow } from "./styles";
 import InputField from "../Components/input";
 import BasicDashboard from './Basic/index.js';
 import { isLogIn, fbLogIn } from '../Components/header.js';
+import { Row, Col } from 'reactstrap';
 import styles from './Basic/index.css';
 
 const responseFacebook = (response) => {
@@ -26,29 +27,43 @@ const DashBoard = () => {
   return (
     <>
       {/* <Header /> */}
-      <DayVisitsReport
-        metric={"ga:users"}
-        title={"Users"}
-        viewID={viewID}
-      />
-      <DayVisitsReport
-        metric={"ga:sessions"}
-        title={"Sessions"}
-        viewID={viewID}
-      />
+      <Row>
+        <Col md="6">
+          <div className="card">
+            <div className="card-body">
+              <DayVisitsReport
+                metric={"ga:users"}
+                title={"Users"}
+                viewID={viewID}
+              />
+            </div></div>
+        </Col>
+        <Col md="6">
+          <div className="card">
+            <div className="card-body">
+              <DayVisitsReport
+                metric={"ga:sessions"}
+                title={"Sessions"}
+                viewID={viewID}
+              />
+            </div></div>
+        </Col>
+      </Row>
       <CountriesReport viewID={viewID} />
-      <PageviewsReport viewID={viewID} />
-      <SourceReport viewID={viewID} />
+      <Row>
+      <Col md="6"><PageviewsReport viewID={viewID} /></Col>
+      <Col md="6"><SourceReport viewID={viewID} /></Col>
+      </Row>
       <div className="card" className={styles.card}>
         <div className="card-body">
-        <LastRow>
-          <BrowsersReport viewID={viewID} />
-          <DevicesReport viewID={viewID} />
-        </LastRow>
+          <LastRow>
+            <Col md="6"><BrowsersReport viewID={viewID} /></Col>
+            <Col md="6"><DevicesReport viewID={viewID} /></Col>
+          </LastRow>
+        </div>
       </div>
-    </div>
-      {/* {isFBLogIn? <BasicDashboard id='fb' />: ''} */ }
-  {/* <div id='fb'></div> */ }
+      {/* {isFBLogIn? <BasicDashboard id='fb' />: ''} */}
+      {/* <div id='fb'></div> */}
     </>
   );
 };

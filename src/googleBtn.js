@@ -4,7 +4,7 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import DashBoard from './Dashboard/dashboard.js';
 
 
-const CLIENT_ID = '<your Client ID>';
+const CLIENT_ID = '';
 
 
 class GoogleBtn extends Component {
