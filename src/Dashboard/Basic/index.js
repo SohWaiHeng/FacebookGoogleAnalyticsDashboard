@@ -702,7 +702,7 @@ export default class BasicDashboard extends Component {
 
         function getFBData() {
 
-            let accesstoken = 'EAAPWNENHrcUBAPkgB5BX2BjAPrSAwuaVxWfldqleR3gbHhqGYOHUZCYoQBqugFKnfORtJ4uWfXs8L1ijJgZB6rGIgn3gr8Qh9sg9vg5S0Hzd4SoWyBYsqlKtGatA4Ven61QEub907vICGWI1l6uvwAzzueWzCgqbmviSmTO3QBSmx5DEMcgGYJNH2sfYbGBiHHz6ts5wZDZD'
+            let accesstoken = 'EAAPWNENHrcUBAHTwo1jmFkx58uizmjCz1V0WCpmWR7uGKZCr0jcvrb6fm24vHa44P4TQdHigXYKNkS4qIlZAf1nq7bZB2RgOkJ76ZCIDhbudCm0ZCwvLUXkj0TUbXcZBlUgZC6Gx9hx8agUhSamwRrdqyLOyUpznbd8RU4lUmh9v69s18xGBiM72cyQnkuPm1ZBEcMkbJ7NM7gZDZD'
 
             const now = Math.round(Date.now() / 1000);
             // around 90 days before
