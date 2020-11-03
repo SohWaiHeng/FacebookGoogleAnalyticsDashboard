@@ -7,7 +7,7 @@ import { ChartTitle, Subtitle, PieChartWrapper, colors } from "./styles";
 import styles from './Basic/index.css';
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-const BrowsersReport = (props) => {
+const Gender = (props) => {
   const INITIAL_STATE = {
     labels: [],
     values: [],
@@ -65,13 +65,13 @@ const BrowsersReport = (props) => {
       viewID: props.viewID,
       startDate,
       endDate,
-      metrics: "ga:users",
-      dimensions: ["ga:browser"],
+      metrics: "ga:audience",
+      dimensions: ["ga:userGender"],
     };
     setTimeout(
       () =>
         queryReport(request)
-          .then((resp) => displayResults(resp))
+          .then((resp) => {console.log(resp); displayResults(resp)})
           .catch((error) => console.error(error)),
       1500
     );
@@ -81,7 +81,7 @@ const BrowsersReport = (props) => {
 
   return (
     <div>
-        <ChartTitle>Browsers by Users</ChartTitle>
+        <ChartTitle>Gender</ChartTitle>
         <Subtitle>{`Total Users - ${totalUsers}`}</Subtitle>
         <CustomDatePicker
           placeholder={"Start date"}
@@ -102,4 +102,4 @@ const BrowsersReport = (props) => {
   );
 };
 
-export default BrowsersReport;
+export default Gender;

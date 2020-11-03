@@ -5,6 +5,8 @@ import PageviewsReport from "./pageviewReport";
 import SourceReport from "./sourceReport";
 import BrowsersReport from "./browsersReport";
 import DevicesReport from "./devicesReport";
+import Demographic from './demographic';
+import Gender from './gender';
 import Header from "../Components/header";
 import { LastRow } from "./styles";
 import InputField from "../Components/input";
@@ -49,7 +51,10 @@ const DashBoard = () => {
             </div></div>
         </Col>
       </Row>
-      <CountriesReport viewID={viewID} />
+      <Row>
+        <Col md="6"><Gender viewID={viewID} /></Col>
+        <Col md="6"><CountriesReport viewID={viewID} /></Col>
+      </Row>
       <Row>
       <Col md="6"><PageviewsReport viewID={viewID} /></Col>
       <Col md="6"><SourceReport viewID={viewID} /></Col>
