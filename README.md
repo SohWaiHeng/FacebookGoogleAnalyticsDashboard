@@ -17,6 +17,10 @@ This dashboard allows you to:
 1. Clone this repo
 2. Add your CLIENT_ID into .env file:
     REACT_APP_CLIENT_ID='YOUR_CLIENT_ID'
-3. Run ```npm install```
-4. Run ```npm start```
+3. Add your Facebook App ID into appId inside src/Dashboard/Basic/index.js:
+    appId={FACEBOOK_APP_ID}
+4. Add your access token into accesstoken inside src/Dashboard/Basic/index.js:
+    accesstoken = {PAGE_ACCESS_TOKEN}
+5. Run ```npm install```
+6. Run ```npm start```
 
