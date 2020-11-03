@@ -2,6 +2,10 @@
 
 Custom Facebook and Google Analytics Dashboard based on Facebook Graph API and Google Analytics Reporting API v4 with OAuth2, charts and tables.
 
+This dashboard allows you to:
+- view data of your Facebook page using Facebook Graph API
+- view data of your website using Google Analytics Reporting API v4
+
 ## Technologies used
 
 - [React.js](https://reactjs.org/)
@@ -16,4 +20,3 @@ Custom Facebook and Google Analytics Dashboard based on Facebook Graph API and G
 3. Run ```npm install```
 4. Run ```npm start```
 
-# FB-and-Google-dashboard
