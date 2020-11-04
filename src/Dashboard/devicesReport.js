@@ -4,7 +4,6 @@ import { Doughnut } from "react-chartjs-2";
 import CustomDatePicker from "./datepicker";
 import { queryReport } from "./queryReport";
 import { ChartTitle, Subtitle, PieChartWrapper, colors } from "./styles";
-// import styles from './Basic/index.css';
 
 const DevicesReport = (props) => {
   const INITIAL_STATE = {

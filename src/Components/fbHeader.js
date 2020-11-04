@@ -30,36 +30,6 @@ const Container = styled.div`
   }
 `;
 
-// const signOut = () => {
-//     window.fbAsyncInit = function () {
-
-//         window.FB.init({
-//             appId: '1079944885546437',
-//             // autoLogAppEvents: true,
-//             xfbml: true,
-//             status: true,
-//             version: 'v8.0'
-//         });
-//     };
-
-//     (function (d, s, id) {
-//         var js, fjs = d.getElementsByTagName(s)[0];
-//         if (d.getElementById(id)) return;
-//         js = d.createElement(s); js.id = id;
-//         js.src = "https://connect.facebook.net/en_US/sdk.js";
-//         fjs.parentNode.insertBefore(js, fjs);
-//     }(document, 'script', 'facebook-jssdk'));
-
-//     window.FB.getLoginStatus(function(response) {
-//         if (response && response.status === 'connected') {
-//             window.FB.logout(function(response) {
-//                 console.log(response);
-//                 return <App />
-//             });
-//         }
-//     });
-// }
-
 const logout = () => {
     // window.FB.getLoginStatus(() => {
     window.FB.logout(function (response) {
@@ -81,10 +51,9 @@ const FBHeader = () => {
             <h1>Analytics Dashboard</h1>
             <div>
             <GoogleLogin
-          clientId="366740137830-57qvr0ugck0uvber104q06toadigikt6.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
+          clientId={process.env.REACT_APP_CLIENT_ID}
           buttonText="LOGIN WITH GOOGLE"
           onSuccess={googleSignIn}
-          // onFailure={responseGoogle}
         />
             </div>
             <div className="signout" onClick={logout}>

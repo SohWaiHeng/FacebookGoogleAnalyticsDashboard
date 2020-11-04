@@ -4,11 +4,7 @@ import "./App.css";
 import { renderButton, checkSignedIn, changeStatus } from "./GoogleAuth/authUtils";
 import DashBoard from "./Dashboard/dashboard";
 import styled from "styled-components";
-import FacebookLogin from 'react-facebook-login';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import DashboardFB from './Dashboard/dashboardFB';
 import BasicDashboard from './Dashboard/Basic/index.js';
-import isLogIn from './Components/header.js';
 import GoogleBtn from './googleBtn.js';
 import FacebookBtn from './facebookBtn.js';
 
@@ -42,7 +38,6 @@ function App() {
 
   const fbSignIn = () => {
     setIsFacebookSignedIn(true);
-    // return <BasicDashboard />
     ReactDOM.render(
     <div>
       <BasicDashboard />
@@ -62,43 +57,13 @@ function App() {
 
   return (
     <div className="App">
-      {/* {(!isSignedIn) ? ( */}
         <>
           <br></br>
           <br></br>
-          {/* <Title>Google Analytics Dashboard</Title> */}
           <GoogleBtn />
           <br></br>
           <FacebookBtn />
-            {/* <GoogleLogin
-              clientId="366740137830-57qvr0ugck0uvber104q06toadigikt6.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
-              buttonText="LOGIN WITH GOOGLE"
-              onSuccess={googleSignIn}
-            /> */}
-            {/* <ButtonContainer>
-            <div id="signin-button"></div>
-          </ButtonContainer> */}
-          {/* <button onClick={fbSignIn}>View FB data</button> */}
-          {/* <ButtonContainer>
-            <br></br>
-            <br></br>
-            <div>
-              <FacebookLogin
-                appId="1079944885546437"
-                // autoLoad={true}
-                fields="name,email,picture"
-                icon="fa-facebook"
-                callback={fbSignIn}
-                disableMobileRedirect={true}
-              />
-            </div>
-          </ButtonContainer> */}
         </>
-      {/* ) : '' */}
-       {/* (isSignedIn ?
-         <DashBoard /> : <BasicDashboard />
-         ) */}
-        {/* } */}
         <div id='fb'></div>
         <div id='google'></div>
     </div>

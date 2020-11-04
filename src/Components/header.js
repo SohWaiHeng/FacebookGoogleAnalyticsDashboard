@@ -56,8 +56,7 @@ const Header = () => {
       {console.log(isGoogleSignedIn)}
       <h1>Analytics Dashboard</h1>
       <FacebookLogin
-        appId="1079944885546437"
-        // autoLoad={true}
+        appId={process.env.FACEBOOK_APP_ID}
         fields="name,email,picture"
         icon="fa-facebook"
         callback={fbLogIn}
@@ -66,7 +65,7 @@ const Header = () => {
         textButton={facebookTextButton}
       />
       <GoogleLogin
-        clientId="366740137830-57qvr0ugck0uvber104q06toadigikt6.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
+        clientId={process.env.REACT_APP_CLIENT_ID}
         buttonText={googleButtonText}
         onSuccess={googleSignIn}
         disabled={googleDisabled}

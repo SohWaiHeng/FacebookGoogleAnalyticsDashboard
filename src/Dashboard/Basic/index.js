@@ -1,44 +1,26 @@
 import React, { Component, Fragment } from 'react';
-import { Dropdown, UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { Bar, Pie } from 'react-chartjs-2';
-import { useLocation } from 'react-router-dom';
-import Header from '../../Components/header';
-import App from '../../App';
-import FBHeader from '../../Components/fbHeader';
 import styles from './index.css';
 
 import {
     Row, Col,
-    Button,
-    CardHeader,
     Card,
     CardBody,
     Progress,
-    TabContent,
-    TabPane,
 } from 'reactstrap';
 
-// import PageTitle from '../../../Layout/AppMain/PageTitle';
-
 import {
-    AreaChart, Area, Line,
+    AreaChart, Area, 
     ResponsiveContainer,
-    BarChart,
-    ComposedChart,
-    CartesianGrid,
     Tooltip,
-    LineChart
 } from 'recharts';
 
 import {
     faAngleUp,
-    faArrowRight,
-    faArrowUp,
-    faArrowLeft,
     faAngleDown,
     faThumbsUp,
     faHeart,
-    faSmile,
     faLaugh,
     faSadTear,
     faSurprise,
@@ -50,7 +32,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 var maindata = [];
 var total7Days = {
-    // likesourcetonumberoffans
     'Likes Sources': {
         "Ads": 0,
         "News Feed": 0,
@@ -60,24 +41,11 @@ var total7Days = {
         "Your Page": 0,
         "Other": 0
     },
-    // pifd
-    // 'Page Impressions Frequency': {
-    //     "1": 0,
-    //     "2": 0,
-    //     "3": 0,
-    //     "4": 0,
-    //     "5": 0,
-    //     "6-10": 0,
-    //     "11-20": 0,
-    //     "21+": 0
-    // },
-    // pvs
     'Page View Sites': {
         "WWW": 0,
         "MOBILE": 0,
         "OTHER": 0
     },
-    // feedback
     'Fans Impressions': {
         "link": 0,
         "like": 0,
@@ -86,7 +54,6 @@ var total7Days = {
     }
 };
 var total28Days = {
-    // likesourcetonumberoffans
     'Likes Sources': {
         "Ads": 0,
         "News Feed": 0,
@@ -96,24 +63,11 @@ var total28Days = {
         "Your Page": 0,
         "Other": 0
     },
-    // pifd
-    // 'Page Impressions Frequency': {
-    //     "1": 0,
-    //     "2": 0,
-    //     "3": 0,
-    //     "4": 0,
-    //     "5": 0,
-    //     "6-10": 0,
-    //     "11-20": 0,
-    //     "21+": 0
-    // },
-    // pvs
     'Page View Sites': {
         "WWW": 0,
         "MOBILE": 0,
         "OTHER": 0
     },
-    // feedback
     'Fans Impressions': {
         "link": 0,
         "like": 0,
@@ -122,7 +76,6 @@ var total28Days = {
     }
 };
 var total90Days = {
-    // likesourcetonumberoffans
     'Likes Sources': {
         "Ads": 0,
         "News Feed": 0,
@@ -132,24 +85,11 @@ var total90Days = {
         "Your Page": 0,
         "Other": 0
     },
-    // pifd
-    // 'Page Impressions Frequency': {
-    //     "1": 0,
-    //     "2": 0,
-    //     "3": 0,
-    //     "4": 0,
-    //     "5": 0,
-    //     "6-10": 0,
-    //     "11-20": 0,
-    //     "21+": 0
-    // },
-    // pvs
     'Page View Sites': {
         "WWW": 0,
         "MOBILE": 0,
         "OTHER": 0
     },
-    // feedback
     'Fans Impressions': {
         "link": 0,
         "like": 0,
@@ -158,7 +98,6 @@ var total90Days = {
     }
 };
 var temp = {
-    // likesourcetonumberoffans
     'Likes Sources': {
         "Ads": 0,
         "News Feed": 0,
@@ -168,24 +107,11 @@ var temp = {
         "Your Page": 0,
         "Other": 0
     },
-    // pifd
-    // 'Page Impressions Frequency': {
-    //     "1": 0,
-    //     "2": 0,
-    //     "3": 0,
-    //     "4": 0,
-    //     "5": 0,
-    //     "6-10": 0,
-    //     "11-20": 0,
-    //     "21+": 0
-    // },
-    // pvs
     'Page View Sites': {
         "WWW": 0,
         "MOBILE": 0,
         "OTHER": 0
     },
-    // feedback
     'Fans Impressions': {
         "link": 0,
         "like": 0,
@@ -248,7 +174,6 @@ const metricsArray = ['Page Engagement', 'Post Impressions', 'New Fans', 'Page C
 const reactionArray = ['Number of Likes', 'Number of Loves', 'Number of Wow', 'Number of Haha', 'Number of Sorry', 'Number of Anger'];
 const description = {'WWW': 'World Wide Web', 'MOBILE': 'Mobile', 'OTHER': 'Others', 'link': 'Shared a post/story', 'like': 'Like a post/story', 'comment': 'Commented on a post/story', 'other': 'Others'}
 var progressValues = {
-    // likesourcetonumberoffans
     'Likes Sources': {
         "Ads": 0,
         "News Feed": 0,
@@ -258,24 +183,11 @@ var progressValues = {
         "Your Page": 0,
         "Other": 0
     },
-    // pifd
-    // 'Page Impressions Frequency': {
-    //     "1": 0,
-    //     "2": 0,
-    //     "3": 0,
-    //     "4": 0,
-    //     "5": 0,
-    //     "6-10": 0,
-    //     "11-20": 0,
-    //     "21+": 0
-    // },
-    // pvs
     'Page View Sites': {
         "WWW": 0,
         "MOBILE": 0,
         "OTHER": 0
     },
-    // feedback
     'Fans Impressions': {
         "link": 0,
         "like": 0,
@@ -306,7 +218,6 @@ export default class BasicDashboard extends Component {
             currentDifference: '7',
             mydata: [],
             totalWhatDays: total7Days,
-            // genderAge: { '7': { 'M': [0, 0, 0, 0, 0, 0, 0], 'F': [0, 0, 0, 0, 0, 0, 0], 'U': [0, 0, 0, 0, 0, 0, 0] }, '28': { 'M': [0, 0, 0, 0, 0, 0, 0], 'F': [0, 0, 0, 0, 0, 0, 0], 'U': [0, 0, 0, 0, 0, 0, 0] }, '90': { 'M': [0, 0, 0, 0, 0, 0, 0], 'F': [0, 0, 0, 0, 0, 0, 0], 'U': [0, 0, 0, 0, 0, 0, 0] } },
             demographic: {
                 labels: ['13-17', '18-24', '25-34', '35-44', '45-54', '55-64', '65+'],
                 datasets: [
@@ -379,7 +290,6 @@ export default class BasicDashboard extends Component {
                 ]
             },
             progressValues: {
-                // likesourcetonumberoffans
                 'Likes Sources': {
                     "Ads": 0,
                     "News Feed": 0,
@@ -389,24 +299,11 @@ export default class BasicDashboard extends Component {
                     "Your Page": 0,
                     "Other": 0
                 },
-                // pifd
-                // 'Page Impressions Frequency': {
-                //     "1": 0,
-                //     "2": 0,
-                //     "3": 0,
-                //     "4": 0,
-                //     "5": 0,
-                //     "6-10": 0,
-                //     "11-20": 0,
-                //     "21+": 0
-                // },
-                // pvs
                 'Page View Sites': {
                     "WWW": 0,
                     "MOBILE": 0,
                     "OTHER": 0
                 },
-                // feedback
                 'Fans Impressions': {
                     "link": 0,
                     "like": 0,
@@ -445,8 +342,6 @@ export default class BasicDashboard extends Component {
 
     updateDataDisplayed(difference) {
         const arr = difference == '7' ? total7Days : (difference == '28' ? total28Days : total90Days)
-        console.log(arr)
-        console.log(total28Days)
         metricsArray.map((value, index) => {
             this.current0(value, arr);
             this.current1(value, parseFloat(difference));
@@ -459,8 +354,6 @@ export default class BasicDashboard extends Component {
             this.current2(value);
             this.current3(value);
         })
-        // this.current4(genderAge);
-        // this.current5(countryArr)
         Object.keys(this.state.progressValues).map((key) => {
             this.current7(arr, key);
             this.current8(arr);
@@ -502,10 +395,6 @@ export default class BasicDashboard extends Component {
 
     current4(obj) {
         this.setState(prevState => {
-            // let demographic = Object.assign({}, prevState.demographic.datasets[0].data);
-            // demographic = number;
-            // console.log("demographic.datasets[0].data " + demographic)
-            // console.log(outerGenderAge)
             let demographic = Object.assign({}, prevState.demographic);
             const copy = JSON.parse(JSON.stringify(obj))
             demographic.datasets.map((value) => {
@@ -513,19 +402,11 @@ export default class BasicDashboard extends Component {
                 else if (value.label == 'Female') value.data = copy['F'];
                 else if (value.label == 'Unknown') value.data = copy['U'];
             })
-            // demographic.datasets[0].data = obj;
-            // console.log("demographic.datasets[0].data " + demographic.datasets[0].data)
-            // demographic.datasets[1].data = number['F'];
-            // console.log("demographic.datasets[1].data " + demographic.datasets[1].data)
-            // demographic.datasets[2].data = number['U'];
-            // console.log("demographic.datasets[2].data " + demographic.datasets[2].data)
-            // console.log("demographic " + this.state.demographic);
             return { demographic };
         })
     };
 
     current5(array) {
-        console.log(this.state.thecountry.datasets)
         this.setState(prevState => {
             let thecountry = Object.assign({}, prevState.thecountry);
             thecountry.datasets[0].data = array;
@@ -535,9 +416,7 @@ export default class BasicDashboard extends Component {
 
     current7(obj, name) {
         Object.entries(obj[name]).forEach(([key2, value2]) => {
-            console.log(temp[name][key2] + ' ' + obj[name][key2])
             temp[name][key2] = 0 || ((obj[name][key2] / Math.max(...Object.values(obj[name]))) * 100);
-            console.log(temp[name][key2] + ' ' + obj[name][key2])
         })
         this.setState(prevState => {
             let progressValues = Object.assign({}, prevState.progressValues);
@@ -554,42 +433,15 @@ export default class BasicDashboard extends Component {
         })
     }
 
-    // current5(number) {
-    //     this.setState(prevState => {
-    //         // console.log(genderAge);
-    //         let demographic = Object.assign({}, prevState.demographic.datasets[1].data);
-    //         demographic = number;
-    //         console.log("demographic.datasets[1].data " + demographic)
-    //         // demographic.datasets[1].data = [];
-    //         // demographic.datasets[1].data = number['F'];
-    //         // console.log("demographic.datasets[1].data " + demographic.datasets[1].data)
-    //         // demographic.datasets[2].data = [];
-    //         // demographic.datasets[2].data = number['U'];
-    //         // console.log("demographic.datasets[2].data " + demographic.datasets[2].data)
-    //         // console.log("demographic " + this.state.demographic);
-    //         return { demographic };
-    //     })
-    // }
     current6(number) {
         this.setState(prevState => {
-            // console.log(genderAge);
             let demographic = Object.assign({}, prevState.demographic.datasets[2].data);
             demographic = number;
-            console.log("demographic.datasets[2].data " + demographic)
-            // demographic.datasets[1].data = [];
-            // demographic.datasets[1].data = number['F'];
-            // console.log("demographic.datasets[1].data " + demographic.datasets[1].data)
-            // demographic.datasets[2].data = [];
-            // demographic.datasets[2].data = number['U'];
-            // console.log("demographic.datasets[2].data " + demographic.datasets[2].data)
-            // console.log("demographic " + this.state.demographic);
             return { demographic };
         })
     }
 
     componentDidMount() {
-
-        console.log(2);
 
         var script = document.createElement('script');
 
@@ -603,37 +455,12 @@ export default class BasicDashboard extends Component {
         window.fbAsyncInit = function () {
 
             window.FB.init({
-                appId: '1079944885546437',
-                // autoLogAppEvents: true,
+                appId: process.env.FACEBOOK_APP_ID,
                 xfbml: true,
                 status: true,
                 cooie: true,
                 version: 'v8.0'
             });
-
-            // window.FB.getLoginStatus(function(response) {
-            //     console.log(response.status)
-            //     if (response.status === 'connected') {
-            //         //display user data
-            //         getFBData();
-            //     }
-            // });
-
-            // window.FB.getLoginStatus(function (response) {
-            //     statusChangeCallback(response);
-            // });
-
-            // (function(d, s, id){
-            //     var js, fjs = d.getElementsByTagName(s)[0];
-            //     if (d.getElementById(id)) {return;}
-            //     js = d.createElement(s); js.id = id;
-            //     js.src = "https//connect.facebook.net/en_US/sdk.js";
-            //     fjs.parentNode.insertBefore(js, fjs);
-            //   }(document, 'script', 'facebook-jssdk'));
-
-            // if (typeof facebookInit == 'function') {
-            // facebookInit();
-            // }
 
         };
 
@@ -651,81 +478,14 @@ export default class BasicDashboard extends Component {
 
 
     run() {
-        // var script = document.createElement('script');
-
-        // script.src = "https://connect.facebook.net/en_US/sdk.js";
-        // script.async = true;
-        // script.defer = true;
-        // script.crossOrigin = 'anonymous'
-
-        // document.body.appendChild(script);
-
-        // console.log('run here')
-
-        // // var gid;
-
-        // // function statusChangeCallback(response) {
-        // //     console.log('statusChangeCallback');
-        // //     console.log(response);
-
-        // //     if (response.status === 'connected') {
-        // //         getFBData();
-        // //     } else {
-        // //         document.getElementById('status').innerHTML = 'Please log ' +
-        // //             'into this app.';
-        // //     }
-        // // }
-
-        // // function checkLoginState() {
-        // //     window.FB.getLoginStatus(function (response) {
-        // //         statusChangeCallback(response);
-        // //     });
-        // // }
-
-        // window.fbAsyncInit = function () {
-
-        //     window.FB.init({
-        //         appId: '1079944885546437',
-        //         // autoLogAppEvents: true,
-        //         xfbml: true,
-        //         status: true,
-        //         version: 'v8.0'
-        //     });
-
-        //     // window.FB.getLoginStatus(function(response) {
-        //     //     console.log(response.status)
-        //     //     if (response.status === 'connected') {
-        //     //         //display user data
-        //     //         getFBData();
-        //     //     }
-        //     // });
-
-        //     // window.FB.getLoginStatus(function (response) {
-        //     //     statusChangeCallback(response);
-        //     // });
-
-        //     // (function(d, s, id){
-        //     //     var js, fjs = d.getElementsByTagName(s)[0];
-        //     //     if (d.getElementById(id)) {return;}
-        //     //     js = d.createElement(s); js.id = id;
-        //     //     js.src = "https//connect.facebook.net/en_US/sdk.js";
-        //     //     fjs.parentNode.insertBefore(js, fjs);
-        //     //   }(document, 'script', 'facebook-jssdk'));
-
-        //     // if (typeof facebookInit == 'function') {
-        //     // facebookInit();
-        //     // }
-
-        // };
 
         wait(2 * 1000).then(() => { getFBData() });
 
         function getFBData() {
 
-            let accesstoken = 'EAAPWNENHrcUBAKIC3WUyKZCJR48odrGUvELRoF1WGGb0D3uusWZCmZCGrM0iaNcvP8l3YBhztK8w9RnbgS5wL2SxylA2ZAHTX7roNFpcqrrQi3H6jCxQRUkeUK8MsYWjBS2DZAWc76CaThAZCkWc9Lz8eMEiHT7Qu8iQlmcAG5ZBjnBaLLxxXjaY6ojbHm4Ki8t7Ahyk0d6WQZDZD'
+            let accesstoken = 'EAAPWNENHrcUBAFCOxKmZAv0Q3PFZCG1VqVZAZC3tzTbMwZA1uFKJtKXKqbHfS3yXwRJPVeUhnqZBW09ErGzGyjGSqXU1yKxjPZB2ZCQ8dHltBxsus2ssFYihK9RG5KM2WL0yDonwUid1LzI6vMDc0RjRIhryQKjHWjuPEHZBgZCC3ZCFhWVakZCk1prREtZA7sOFqQZBi9sdCVn25LMgZDZD';
 
             const now = Math.round(Date.now() / 1000);
-            // around 90 days before
             const before = Math.round(now - 8000000);
             now.toString();
             before.toString();
@@ -735,13 +495,11 @@ export default class BasicDashboard extends Component {
                 return maindata;
             }
 
-            // var get = await getInsights("page_post_engagements,page_impressions,page_fans,page_fan_adds_unique,page_impressions_by_age_gender_unique,page_consumptions,page_fans_by_like_source,page_impressions_frequency_distribution,page_views_total,page_views_by_site_logged_in_unique,page_fans_country,page_actions_post_reactions_like_total,page_actions_post_reactions_love_total,page_actions_post_reactions_wow_total,page_actions_post_reactions_haha_total,page_actions_post_reactions_sorry_total,page_actions_post_reactions_anger_total,page_positive_feedback_by_type");
             function startThis(callback) {
                 return getInsights("page_post_engagements,page_impressions,page_fans,page_fan_adds_unique,page_impressions_by_age_gender_unique,page_consumptions,page_fans_by_like_source,page_impressions_frequency_distribution,page_views_total,page_views_by_site_logged_in_unique,page_fans_country,page_actions_post_reactions_like_total,page_actions_post_reactions_love_total,page_actions_post_reactions_wow_total,page_actions_post_reactions_haha_total,page_actions_post_reactions_sorry_total,page_actions_post_reactions_anger_total,page_positive_feedback_by_type,page_impressions_viral_unique", function (res) {
                     createClass(res, function (resp) {
                         getValue(resp);
                     })
-                    console.log(maindata)
                     callback(maindata)
                 })
             }
@@ -752,7 +510,6 @@ export default class BasicDashboard extends Component {
                     'GET',
                     { "access_token": accesstoken, "metric": insights, "since": before, "until": now },
                     function (response) {
-                        console.log(response);
                         callback(response);
                     }
                 )
@@ -831,18 +588,13 @@ export default class BasicDashboard extends Component {
                         day7Date = data.values[84].end_time.substring(0, 10)
                         day28Date = data.values[63].end_time.substring(0, 10)
                         day90Date = data.values[1].end_time.substring(0, 10)
-                        // var count = 89, todaysValue = {}, othersValue = { '7': 0, '28': 0, '90': 0 };
-                        console.log(data.values[data.values.length - 1].value)
                         Object.entries(data.values[data.values.length - 1].value).forEach(([key, value]) => {
-                            console.log(key + ' ' + value)
                             key in countryArr ? countryNum[countryArr[key]] = value : countryNum['Others'] += value;
                         })
-                        console.log(countryNum)
                         Object.entries(countryNum).forEach(([key, value]) => {
                             var count = 0;
                             while (count < 12) {
                                 if (value >= countryDataArr[count]) {
-                                    console.log(value)
                                     countryDataArr.splice(count, 0, value)
                                     countryDataNames.splice(count, 0, key)
                                     break;
@@ -854,57 +606,13 @@ export default class BasicDashboard extends Component {
                         })
                         countryDataArr = countryDataArr.slice(0, 12);
                         countryDataNames = countryDataNames.slice(0, 12);
-                        console.log(countryDataArr)
-                        console.log(countryDataNames)
                     }
 
-                    // for metrics that show lifetime value
                     saveLivetimeValue(data) {
-                        console.log(data)
                         todaysDate = data.values[90].end_time.substring(0, 10)
                         day7Date = data.values[84].end_time.substring(0, 10)
                         day28Date = data.values[63].end_time.substring(0, 10)
                         day90Date = data.values[1].end_time.substring(0, 10)
-                        console.log(todaysDate + ' ' + day7Date + ' ' + day28Date + ' ' + day90Date)
-                        var count = 89, todaysValue = {}, othersValue = { '7': 0, '28': 0, '90': 0 };
-                        // Object.entries(data.values).forEach(([key, value]) => {
-                        //     Object.entries(value.value).forEach(([key2, value2]) => {
-                        //         // key2 in countryArr ? country.datasets[0].data[countryNames.indexOf(countryArr[key2])] = value2 : country.datasets[0].data[11] += value2;
-                        //         // key in countryArr ? fansCountryLifeTime[countryArr[key]] = value : fansCountryLifeTime['others'] += value;
-                        //         if (count == 88) {
-                        //             key2 in countryArr ? totalCountryData['90'][countryNames.indexOf(countryArr[key2])] = value2 : totalCountryData['90'][11] += value2;
-                        //             // console.log(key2 + ' 90 ' + totalCountryData['90'][countryNames.indexOf(countryArr[key2])])
-                        //         } else if (count == 26) {
-                        //             key2 in countryArr ? totalCountryData['28'][countryNames.indexOf(countryArr[key2])] = value2 : totalCountryData['28'][11] += value2;
-                        //             // console.log(key2 + ' 28 ' + totalCountryData['28'][countryNames.indexOf(countryArr[key2])])
-                        //         } else if (count == 5) {
-                        //             console.log('7 ' + key2 + ' ' + value2)
-                        //             key2 in countryArr ? totalCountryData['7'][countryNames.indexOf(countryArr[key2])] = value2 : totalCountryData['7'][11] += value2;
-                        //             console.log('7after  ' + key2 + ' ' + totalCountryData['7'][countryNames.indexOf(countryArr[key2])])
-                        //         } else if (count == -2) {
-                        //             todaysValue[countryArr[key2]] = value2;
-                        //             console.log(key2 + ' 0 ' + value2)
-                        //             console.log(key2 + ' 7 ' + totalCountryData['7'][countryNames.indexOf(countryArr[key2])])
-                        //             console.log(key2 + ' 28 ' + totalCountryData['28'][countryNames.indexOf(countryArr[key2])])
-                        //             console.log(key2 + ' 90 ' + totalCountryData['90'][countryNames.indexOf(countryArr[key2])])
-                        //             key2 in countryArr ? totalCountryData['90'][countryNames.indexOf(countryArr[key2])] = (value2 - totalCountryData['90'][countryNames.indexOf(countryArr[key2])] < 0 ? 0 : value2 - totalCountryData['90'][countryNames.indexOf(countryArr[key2])]) : othersValue['90'] += value2;
-                        //             key2 in countryArr ? totalCountryData['28'][countryNames.indexOf(countryArr[key2])] = (value2 - totalCountryData['28'][countryNames.indexOf(countryArr[key2])] < 0 ? 0 : value2 - totalCountryData['28'][countryNames.indexOf(countryArr[key2])]) : othersValue['28'] += value2;
-                        //             key2 in countryArr ? totalCountryData['7'][countryNames.indexOf(countryArr[key2])] = (value2 - totalCountryData['7'][countryNames.indexOf(countryArr[key2])] < 0 ? 0 : value2 - totalCountryData['7'][countryNames.indexOf(countryArr[key2])]) : othersValue['7'] += value2;
-                        //             console.log(key2 + ' 7 ' + totalCountryData['7'][countryNames.indexOf(countryArr[key2])])
-                        //             console.log(key2 + ' 28 ' + totalCountryData['28'][countryNames.indexOf(countryArr[key2])])
-                        //             console.log(key2 + ' 90 ' + totalCountryData['90'][countryNames.indexOf(countryArr[key2])])
-                        //         }
-                        //     })
-                        //     if (count == -2) {
-                        //         totalCountryData['90'][11] = (othersValue['90'] - totalCountryData['90'][11] < 0 ? 0 : othersValue['90'] - totalCountryData['90'][11]);
-                        //         totalCountryData['28'][11] = (othersValue['28'] - totalCountryData['28'][11] < 0 ? 0 : othersValue['28'] - totalCountryData['28'][11]);
-                        //         totalCountryData['7'][11] = (othersValue['7'] - totalCountryData['7'][11] < 0 ? 0 : othersValue['7'] - totalCountryData['7'][11]);
-                        //         console.log('others 7 ' + totalCountryData['7'][11])
-                        //     }
-                        //     count--;
-                        // // });
-                        // console.log(count)
-                        // console.log(totalCountryData)
                     }
 
                     getTotal(dict, name, key, sum, maleNum, femaleNum, unknownNum) {
@@ -925,26 +633,21 @@ export default class BasicDashboard extends Component {
                     }
 
                     changeAgeAndGender(data) {
-                        console.log(data.values[data.values.length - 1].value)
                         const substitute = { '13-17': 0, '18-24': 1, '25-34': 2, '35-44': 3, '45-54': 4, '55-64': 5, '65+': 6 }
                         Object.entries(data.values[data.values.length - 1].value).forEach(([key, value]) => {
                             if (key.substring(0, 1) == 'U' && key.substring(2) == '13-17') return;
                             genderAge90[key.substring(0, 1)][substitute[key.substring(2)]] = value == NaN ? 0 : value;
                         })
-                        console.log(genderAge90)
                     }
 
                     updateAgeGenderData(data, name) {
-                        console.log(data.values[0].value)
                         var count = data.values.length - 1, sum = { 'M': {}, 'F': {}, 'U': {} };
                         const substitute = { '13-17': 0, '18-24': 1, '25-34': 2, '35-44': 3, '45-54': 4, '55-64': 5, '65+': 6 }
                         allData.forEach((obj) => {
                             if (data.period == 'day') {
-                                // if (data.values[count].value['M'] == {}) {count--; return;}
                                 obj[name] = { 'M': {}, 'F': {}, 'U': {} };
                                 let temp;
                                 if (count == data.values.length - 1) {
-                                    // console.log(data.values.length)
                                     Object.entries(data.values[count].value).forEach(([key, value]) => {
                                         value == NaN ? temp = 0 : temp = value;
                                         genderAge90[key.substring(0, 1)][key.substring(2)] = value == NaN ? 0 : value;
@@ -952,21 +655,11 @@ export default class BasicDashboard extends Component {
                                     });
                                 } else if (count > -1) {
                                     Object.entries(data.values[count].value).forEach(([key, value]) => {
-                                        // console.log(key.substring(0, 1) + ' ' + key.substring(2) + ' ' + sum[key.substring(0, 1)][key.substring(2)])
                                         value == NaN ? temp = 0 : temp = value;
                                         obj[name][key.substring(0, 1)][key.substring(2)] = temp;
                                         genderAge90[key.substring(0, 1)][key.substring(2)] += temp;
-                                        // if (count == data.values.length - 7) {
-                                        //     outerGenderAge['7'][key.substring(0, 1)][substitute[key.substring(2)]] = sum[key.substring(0, 1)][key.substring(2)];
-                                        //     if (outerGenderAge['7'][key.substring(0, 1)][substitute[key.substring(2)]] === NaN ) console.log('nan') 
-                                        // } else if (count == data.values.length - 28) {
-                                        //     outerGenderAge['28'][key.substring(0, 1)][substitute[key.substring(2)]] = sum[key.substring(0, 1)][key.substring(2)];
-                                        // } else if (count == 0) {
-                                        //     outerGenderAge['90'][key.substring(0, 1)][substitute[key.substring(2)]] = sum[key.substring(0, 1)][key.substring(2)];
-                                        // }
                                     });
                                 }
-                                console.log(count);
                                 if (count == data.values.length - 7) {
                                     Object.entries(sum).forEach(([key, value]) => {
                                         Object.entries(value).forEach(([key2, value2]) => {
@@ -1034,7 +727,6 @@ export default class BasicDashboard extends Component {
                 postReactions = new Metrics('page_positive_feedback_by_type', 7);
                 dailyReach = new Metrics('page_impressions_viral_unique', 7)
 
-                console.log(res.data)
 
                 for (let i = 0; i < res.data.length; i++) {
 
@@ -1064,7 +756,6 @@ export default class BasicDashboard extends Component {
 
                         case 'page_impressions_by_age_gender_unique':
                             genderAndAgeToFrequency.changeAgeAndGender(res.data[i]);
-                            // updateState();
                             break;
 
                         case 'page_consumptions':
@@ -1072,19 +763,12 @@ export default class BasicDashboard extends Component {
                             break;
 
                         case 'page_fans_country':
-                            console.log(res.data[i])
                             fansCountry.changeCountryData(res.data[i]);
                             break;
 
                         case 'page_fans_by_like_source':
                             fansByLikeSource.updateAdvancedData(res.data[i], 'Likes Sources');
                             break;
-
-                        // case 'page_impressions_frequency_distribution':
-                        //     if (res.data[i].period == 'day') {
-                        //         pageImpressionsFrequencyDistribution.updateAdvancedData(res.data[i], 'Page Impressions Frequency');
-                        //     }
-                        //     break;
 
                         case 'page_views_total':
                             pageViews.updateSimpleData(res.data[i], 'Page View Total');
@@ -1126,146 +810,44 @@ export default class BasicDashboard extends Component {
             }
 
             return startThis(function (maindata) {
-                console.log(maindata);
                 return maindata;
             })
 
         }
 
         wait(6 * 1000).then(() => {
-            // let todaysValue = { 'ppe': parseFloat(maindata[Object.keys(maindata)[0]]['ppe']), 'pi': parseFloat(maindata[Object.keys(maindata)[0]]['pi']) }
             var metric;
-            console.log(maindata)
-            // while (maindata == []) this.run();
             for (metric of metricsArray) {
                 todaysValue[metric] = parseFloat(maindata[Object.keys(maindata)[0]][metric])
                 difference[metric]['7'] = ((total7Days[metric] - previous7Days[metric]) / previous7Days[metric]) * 100
                 difference[metric]['28'] = ((total28Days[metric] - previous28Days[metric]) / previous28Days[metric]) * 100
-                // difference[metric]['90'] = ((parseFloat(maindata[Object.keys(maindata)[0]][metric]) - parseFloat(maindata[Object.keys(maindata)[6]][metric])) - (parseFloat(maindata[Object.keys(maindata)[7]][metric]) - parseFloat(maindata[Object.keys(maindata)[14]][metric]))) / (parseFloat(maindata[Object.keys(maindata)[7]][metric]) - parseFloat(maindata[Object.keys(maindata)[14]][metric])) * 100
             }
             for (metric of reactionArray) {
                 todaysValue[metric] = parseFloat(maindata[Object.keys(maindata)[0]][metric])
                 difference[metric]['7'] = ((total7Days[metric] - previous7Days[metric]) / previous7Days[metric]) * 100
                 difference[metric]['28'] = ((total28Days[metric] - previous28Days[metric]) / previous28Days[metric]) * 100
-                // difference[metric]['90'] = ((parseFloat(maindata[Object.keys(maindata)[0]][metric]) - parseFloat(maindata[Object.keys(maindata)[6]][metric])) - (parseFloat(maindata[Object.keys(maindata)[7]][metric]) - parseFloat(maindata[Object.keys(maindata)[14]][metric]))) / (parseFloat(maindata[Object.keys(maindata)[7]][metric]) - parseFloat(maindata[Object.keys(maindata)[14]][metric])) * 100
             }
-            // temp = JSON.parse(JSON.stringify(progressValues));
-            // console.log(outerGenderAge);
-            console.log(total7Days);
-            console.log(totalCountryData);
-            console.log(country);
-            console.log(this.state.thecountry);
             this.setState({ data: maindata, todaysValue: todaysValue, difference: difference, progressValues: temp, thecountry: country });
-            console.log(this.state.progressValues)
-            // try setting 1 by 1
-            // progressValues: {'likeSourceToNumberOfFans': total7Days['likeSourceToNumberOfFans'], 'pifd': total7Days['pifd'], 'pvs': total7Days['pvs'], 'feedback': total7Days['feedback']}}
 
         })
-
-        // (function (d, s, id) {
-        //     var js, fjs = d.getElementsByTagName(s)[0];
-        //     if (d.getElementById(id)) return;
-        //     js = d.createElement(s); js.id = id;
-        //     js.src = "https://connect.facebook.net/en_US/sdk.js";
-        //     fjs.parentNode.insertBefore(js, fjs);
-        // }(document, 'script', 'facebook-jssdk'));
-
-        // wait(5 * 1000).then(() => {
-        //     // let todaysValue = { 'ppe': parseFloat(maindata[Object.keys(maindata)[0]]['ppe']), 'pi': parseFloat(maindata[Object.keys(maindata)[0]]['pi']) }
-        //     var metric;
-        //     console.log(maindata)
-        //     // while (maindata == []) this.run();
-        //     for (metric of metricsArray) {
-        //         todaysValue[metric] = parseFloat(maindata[Object.keys(maindata)[0]][metric])
-        //         difference[metric] = (parseFloat(maindata[Object.keys(maindata)[0]][metric]) - parseFloat(maindata[Object.keys(maindata)[1]][metric])) / parseFloat(maindata[Object.keys(maindata)[1]][metric]) * 100
-        //     }
-        //     // temp = JSON.parse(JSON.stringify(progressValues));
-        //     // console.log(outerGenderAge);
-        //     console.log(maindata)
-        //     console.log(temp);
-        //     this.setState({ data: maindata, todaysValue: todaysValue, difference: difference, progressValues: temp });
-        //     console.log(this.state.progressValues)
-        //     // try setting 1 by 1
-        //     // progressValues: {'likeSourceToNumberOfFans': total7Days['likeSourceToNumberOfFans'], 'pifd': total7Days['pifd'], 'pvs': total7Days['pvs'], 'feedback': total7Days['feedback']}}
-
-        // })
     }
 
-    // componentWillMount() {
-    //     this.setState({
-    //         dropdownOpen: false,
-    //         activeTab1: '11',
-    //         obj: { 'ppe': total7Days, 'pi': total7Days, 'pfn': total7Days, 'pc': total7Days, 'pvt': total7Days, 'like': total7Days },
-    //         num: { 'ppe': 7, 'pi': 7, 'pfn': 7, 'pc': 7, 'pvt': 7, 'like': 7 },
-    //         todaysValue: { 'ppe': 0, 'pi': 0, 'pfn': 0, 'pc': 0, 'pvt': 0, 'like': 0 },
-    //         difference: { 'ppe': 0, 'pi': 0, 'pfn': 0, 'pc': 0, 'pvt': 0, 'like': 0 },
-    //         mydata: [],
-    //         demographic: {
-    //             labels: ['13-17', '18-24', '25-34', '35-44', '45-54', '55-64', '65+'],
-    //             datasets: [
-    //                 {
-    //                     label: 'Male',
-    //                     backgroundColor: 'rgba(255,99,132,0.2)',
-    //                     borderColor: 'rgba(255,99,132,1)',
-    //                     borderWidth: 1,
-    //                     hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-    //                     hoverBorderColor: 'rgba(255,99,132,1)',
-    //                     borderCapStyle: 'round',
-    //                     data: genderAge['7']['M']
-    //                 },
-    //                 {
-    //                     label: 'Female',
-    //                     backgroundColor: 'rgba(155,231,91,0.2)',
-    //                     borderColor: 'rgba(5,190,132,1)',
-    //                     borderWidth: 1,
-    //                     stack: 1,
-    //                     hoverBackgroundColor: 'rgba(5,190,132,1)',
-    //                     hoverBorderColor: 'rgba(255,99,132,1)',
-    //                     data: genderAge['7']['F']
-    //                 },
-    //                 {
-    //                     label: 'Unknown',
-    //                     backgroundColor: 'rgba(15,21,150,0.2)',
-    //                     borderColor: 'rgba(25,99,232,1)',
-    //                     borderWidth: 1,
-    //                     stack: 2,
-    //                     hoverBackgroundColor: 'rgba(25,99,232,1)',
-    //                     hoverBorderColor: 'rgba(7,9,232,1)',
-    //                     data: genderAge['7']['U']
-    //                 }
-    //             ]
-    //         }
-    //     })
-    // }
-
     logout = () => {
-        // window.FB.getLoginStatus(() => {
         window.FB.logout(function (response) {
-            console.log("Logged Out!");
-            // const location = useLocation();
-            // console.log(location.pathname);
             window.location = "/";
         });
-        // })
     }
 
     render() {
         return (
             <>
                 <Fragment>
-                    {/* change the button wording etc */}
-                    {/* <Header facebookTextButton="Signed In" facebookDisabled="true" /> */}
-                    {/* <button onClick={this.logout}>Sign Out</button> */}
                     <UncontrolledButtonDropdown className="mb-2 mr-2">
                         <DropdownToggle caret color="primary" className="mb-2 mr-2">
                             Days
-                                    </DropdownToggle>
+                        </DropdownToggle>
                         <DropdownMenu>
                             <DropdownItem header>Choose the number of days</DropdownItem>
-                            {/* <DropdownItem onClick={() => { this.currentAll('ppe', this.state.obj, total28Days); console.log(this.state.obj); this.currentAll('ppe', this.state.num, 28); console.log(this.state.num); this.currentAll('ppe', this.state.todaysValue, (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']))); console.log(this.state.todaysValue); this.currentAll('ppe', (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']) - parseFloat(maindata[Object.keys(maindata)[1]]['ppe'])) / parseFloat(maindata[Object.keys(maindata)[1]]['ppe']) * 100, this.state.difference); console.log(this.state.difference); }}>dk Days</DropdownItem> */}
-                            {/* <DropdownItem onClick={() => { this.current0(value, total7Days); console.log(this.state.obj); this.current1(value, 7); console.log(this.state.num); this.current2(value); console.log(this.state.todaysValue); this.current3(value); console.log(this.state.difference); this.changeCurrentDifference('7') }}>7 Days</DropdownItem>
-                                <DropdownItem onClick={() => { this.current0(value, total28Days); this.current1(value, 28); this.current2(value); this.current3(value); this.changeCurrentDifference('28'); }}>28 Days</DropdownItem>
-                                <DropdownItem onClick={() => { this.current0(value, total90Days); this.current1(value, 90); this.current2(value); this.current3(value); this.changeCurrentDifference('90'); }}>90 Days</DropdownItem> */}
                             <DropdownItem onClick={() => { this.changeCurrentDifference('7'); this.updateDataDisplayed('7'); }}><b>7 Days</b> ({day7Date} to {todaysDate})</DropdownItem>
                             <DropdownItem onClick={() => { this.changeCurrentDifference('28'); this.updateDataDisplayed('28'); }}><b>28 Days</b> ({day28Date} to {todaysDate})</DropdownItem>
                             <DropdownItem onClick={() => { this.changeCurrentDifference('90'); this.updateDataDisplayed('90'); }}><b>90 Days</b> ({day90Date} to {todaysDate})</DropdownItem>
@@ -1273,37 +855,18 @@ export default class BasicDashboard extends Component {
                     </UncontrolledButtonDropdown>
                     <Row >
                         {metricsArray.map((value, index) => {
-                            // const arr = this.state.currentDifference == '7' ? total7Days : (this.state.currentDifference == '28' ? total28Days : total90Days)
-                            // this.current0(value, arr);
-                            // this.current1(value, parseFloat(this.state.currentDifference));
-                            // this.current2(value);
-                            // this.current3(value);
                             return (
                                 <Col lg="4" key={index}>
                                     <div className="card" className={styles.card}>
                                         <div className="card-body">
                                             <div className="card mb-2 widget-chart">
                                                 <div className="widget-chart-content"><br />
-                                                    {/* <UncontrolledButtonDropdown className="mb-2 mr-2">
-                                                        <DropdownToggle caret color="primary" className="mb-2 mr-2">
-                                                            Days
-                                                    </DropdownToggle>
-                                                        <DropdownMenu>
-                                                            <DropdownItem header>Choose the number of days</DropdownItem> */}
-                                                    {/* <DropdownItem onClick={() => { this.currentAll('ppe', this.state.obj, total28Days); console.log(this.state.obj); this.currentAll('ppe', this.state.num, 28); console.log(this.state.num); this.currentAll('ppe', this.state.todaysValue, (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']))); console.log(this.state.todaysValue); this.currentAll('ppe', (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']) - parseFloat(maindata[Object.keys(maindata)[1]]['ppe'])) / parseFloat(maindata[Object.keys(maindata)[1]]['ppe']) * 100, this.state.difference); console.log(this.state.difference); }}>dk Days</DropdownItem> */}
-                                                    {/* <DropdownItem onClick={() => { this.current0(value, total7Days); console.log(this.state.obj); this.current1(value, 7); console.log(this.state.num); this.current2(value); console.log(this.state.todaysValue); this.current3(value); console.log(this.state.difference); this.changeCurrentDifference('7') }}>7 Days</DropdownItem>
-                                                            <DropdownItem onClick={() => { this.current0(value, total28Days); this.current1(value, 28); this.current2(value); this.current3(value); this.changeCurrentDifference('28'); }}>28 Days</DropdownItem>
-                                                            <DropdownItem onClick={() => { this.current0(value, total90Days); this.current1(value, 90); this.current2(value); this.current3(value); this.changeCurrentDifference('90'); }}>90 Days</DropdownItem>
-                                                        </DropdownMenu>
-                                                    </UncontrolledButtonDropdown> */}
                                                     <div className="widget-subheading">
                                                         <h2><b>{metricsArray[index]}</b></h2>
                                                     </div>
                                                     <div className="widget-numbers">
-                                                        {console.log(total90Days)}
                                                         <h3><b>{this.state.currentDifference == '7' ? formatNumber(total7Days[value]) : (this.state.currentDifference == '28' ? formatNumber(total28Days[value]) : this.state.currentDifference == '90' ? formatNumber(total90Days[value]) : '')}</b></h3>
                                                     </div>
-                                                    {console.log(value)}
                                                     {this.state.currentDifference == '90' ? '' :
                                                         <div>
                                                             <div className={this.state.difference[value][this.state.currentDifference] > 0 ? "widget-description text-success" : "widget-description text-danger"}>
@@ -1329,14 +892,6 @@ export default class BasicDashboard extends Component {
                                                         </ResponsiveContainer>
                                                     </div>
                                                 </div>
-                                                {/* <div className="widget-chart-wrapper chart-wrapper-relative"> */}
-                                                {/* <ResponsiveContainer height={100}>
-                                                        <LineChart data={maindata}
-                                                            margin={{ top: 5, right: 5, left: 5, bottom: 0 }}>
-                                                            <Line type='monotone' dataKey='ppe' stroke='#3ac47d'
-                                                                strokeWidth={3} />
-                                                        </LineChart>
-                                                    </ResponsiveContainer> */}
                                             </div>
                                         </div>
                                     </div>
@@ -1352,18 +907,6 @@ export default class BasicDashboard extends Component {
                                 <CardBody>
                                     <h2><b>Facebook Demographic Data</b></h2>
                                     <div>
-                                        {/* <UncontrolledButtonDropdown className="mb-2 mr-2">
-                                            <DropdownToggle caret color="primary" className="mb-2 mr-2">
-                                                Days
-                                    </DropdownToggle>
-                                            <DropdownMenu>
-                    <DropdownItem header>Choose the number of days</DropdownItem> */}
-                                        {/* <DropdownItem onClick={() => { this.currentAll('ppe', this.state.obj, total28Days); console.log(this.state.obj); this.currentAll('ppe', this.state.num, 28); console.log(this.state.num); this.currentAll('ppe', this.state.todaysValue, (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']))); console.log(this.state.todaysValue); this.currentAll('ppe', (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']) - parseFloat(maindata[Object.keys(maindata)[1]]['ppe'])) / parseFloat(maindata[Object.keys(maindata)[1]]['ppe']) * 100, this.state.difference); console.log(this.state.difference); }}>dk Days</DropdownItem> */}
-                                        {/* <DropdownItem onClick={() => { this.current4(genderAge7); }}>7 Days</DropdownItem>
-                                                <DropdownItem onClick={() => { this.current4(genderAge28); }}>28 Days</DropdownItem>
-                                                <DropdownItem onClick={() => { this.current4(genderAge90); }}>90 Days</DropdownItem>
-                                            </DropdownMenu>
-                                        </UncontrolledButtonDropdown> */}
                                         <Bar
                                             data={this.state.demographic}
                                             width={50}
@@ -1393,18 +936,6 @@ export default class BasicDashboard extends Component {
                                 <CardBody>
                                     <h2><b>Facebook Country Data</b></h2>
                                     <div>
-                                        {/* <UncontrolledButtonDropdown className="mb-2 mr-2">
-                                            <DropdownToggle caret color="primary" className="mb-2 mr-2">
-                                                Days
-                                    </DropdownToggle>
-                                            <DropdownMenu>
-                                                <DropdownItem header>Choose the number of days</DropdownItem> */}
-                                        {/* <DropdownItem onClick={() => { this.currentAll('ppe', this.state.obj, total28Days); console.log(this.state.obj); this.currentAll('ppe', this.state.num, 28); console.log(this.state.num); this.currentAll('ppe', this.state.todaysValue, (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']))); console.log(this.state.todaysValue); this.currentAll('ppe', (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']) - parseFloat(maindata[Object.keys(maindata)[1]]['ppe'])) / parseFloat(maindata[Object.keys(maindata)[1]]['ppe']) * 100, this.state.difference); console.log(this.state.difference); }}>dk Days</DropdownItem> */}
-                                        {/* <DropdownItem onClick={() => { this.current4(genderAge7); }}>7 Days</DropdownItem>
-                                                <DropdownItem onClick={() => { this.current4(genderAge28); }}>28 Days</DropdownItem>
-                                                <DropdownItem onClick={() => { this.current4(genderAge90); }}>90 Days</DropdownItem>
-                                            </DropdownMenu>
-                                        </UncontrolledButtonDropdown> */}
                                         <Pie dataKey="value" data={this.state.thecountry}
                                             options={{
                                                 plugins: {
@@ -1423,7 +954,7 @@ export default class BasicDashboard extends Component {
                         <h2><b>Page Reactions</b></h2>
                         <Row>
                             <Col md="4"><CardBody>
-                                <FontAwesomeIcon icon={faThumbsUp} size="3x" />  {console.log(total7Days['Number of Likes'])} <div><h4>{this.state.currentDifference == '7' ? formatNumber(total7Days['Number of Likes']) : (this.state.currentDifference == '28' ? formatNumber(total28Days['Number of Likes']) : this.state.currentDifference == '90' ? formatNumber(total90Days['Number of Likes']) : '')}</h4></div>
+                                <FontAwesomeIcon icon={faThumbsUp} size="3x" /> <div><h4>{this.state.currentDifference == '7' ? formatNumber(total7Days['Number of Likes']) : (this.state.currentDifference == '28' ? formatNumber(total28Days['Number of Likes']) : this.state.currentDifference == '90' ? formatNumber(total90Days['Number of Likes']) : '')}</h4></div>
                             </CardBody></Col>
                             <Col md="4"><CardBody>
                                 <FontAwesomeIcon icon={faHeart} size="3x" /> <div><h4>{this.state.currentDifference == '7' ? formatNumber(total7Days['Number of Loves']) : (this.state.currentDifference == '28' ? formatNumber(total28Days['Number of Loves']) : this.state.currentDifference == '90' ? formatNumber(total90Days['Number of Loves']) : '')}</h4></div>
@@ -1444,18 +975,6 @@ export default class BasicDashboard extends Component {
                                             <div className="card mb-2 widget-chart">
                                                 <div className="widget-chart-content">
                                                     <h3><b>{key}</b></h3>
-                                                    {/* <UncontrolledButtonDropdown className="mb-2 mr-2">
-                                                        <DropdownToggle caret color="primary" className="mb-2 mr-2">
-                                                            Days
-                                                                    </DropdownToggle>
-                                                        <DropdownMenu>
-                            <DropdownItem header>Choose the number of days</DropdownItem> */}
-                                                    {/* <DropdownItem onClick={() => { this.currentAll('ppe', this.state.obj, total28Days); console.log(this.state.obj); this.currentAll('ppe', this.state.num, 28); console.log(this.state.num); this.currentAll('ppe', this.state.todaysValue, (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']))); console.log(this.state.todaysValue); this.currentAll('ppe', (parseFloat(maindata[Object.keys(maindata)[0]]['ppe']) - parseFloat(maindata[Object.keys(maindata)[1]]['ppe'])) / parseFloat(maindata[Object.keys(maindata)[1]]['ppe']) * 100, this.state.difference); console.log(this.state.difference); }}>dk Days</DropdownItem> */}
-                                                    {/* <DropdownItem onClick={() => { this.current7(total7Days, key); this.current8(total7Days); }}>7 Days</DropdownItem>
-                                                            <DropdownItem onClick={() => { this.current7(total28Days, key); this.current8(total28Days); }}>28 Days</DropdownItem>
-                                                            <DropdownItem onClick={() => { this.current7(total90Days, key); this.current8(total90Days); }}>90 Days</DropdownItem>
-                                                        </DropdownMenu>
-                                                    </UncontrolledButtonDropdown> */}
                                                     {Object.keys(this.state.progressValues[key]).map((key2) => {
                                                         return (
                                                             <div>
@@ -1472,9 +991,7 @@ export default class BasicDashboard extends Component {
                             )
                         })}
                     </Row>
-
                 </Fragment >
-                {/* <div id='google'></div> */}
             </>
         )
     }

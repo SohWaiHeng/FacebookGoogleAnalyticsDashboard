@@ -11,7 +11,7 @@ export default class FBLogin extends Component {
     render() {
         return (
             <FacebookLogin
-                appId="1079944885546437"
+                appId={process.env.FACEBOOK_APP_ID}
                 // autoLoad={true}
                 fields="name,email,picture"
                 icon="fa-facebook"

@@ -1,6 +1,5 @@
 import React, { Component, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { render } from 'react-dom';
 import BasicDashboard from './Dashboard/Basic/index.js';
 
 import LoginHOC from 'react-facebook-login-hoc'
@@ -57,10 +56,6 @@ class FacebookBtn extends Component {
         return (
             <div>
                 <button onClick={this.state.isFBLogIn?this.logoutFacebook.bind(this):this.loginFacebook.bind(this)}>{this.state.isFBLogIn?'Facebook Logout':'Facebook Login'}</button>
-                {/* <button onClick={this.logoutFacebook.bind(this)}>Facebook Logout</button> */}
-                {/* <div class="fb-login-button" data-size="large" data-button-type="login_with" data-layout="default" data-auto-logout-link="true" data-use-continue-as="false" data-width="" data-onlogin="this.loginFacebook.bind(this)"></div>
-                <div id="fb-root" onClick="alert('hi')"></div>
-                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v8.0" nonce="p8ZDQwGW"></script> */}
             </div>
         );
     }

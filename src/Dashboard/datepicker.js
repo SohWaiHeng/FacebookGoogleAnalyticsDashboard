@@ -1,7 +1,6 @@
 import React from "react";
 import DatePicker from "react-datepicker";
 import { DatepickerLabel, DatepickerWrapper } from "./styles";
-// import styles from './Basic/index.css';
 import "react-datepicker/dist/react-datepicker.css";
 
 const CustomDatePicker = (props) => {

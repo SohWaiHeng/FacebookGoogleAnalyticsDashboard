@@ -16,8 +16,7 @@ const DashboardFB = () => {
             {!isFacebookSignedIn ? (
                 <>
                     <FacebookLogin
-                        appId="1079944885546437"
-                        // autoLoad={true}
+                        appId={process.env.FACEBOOK_APP_ID}
                         fields="name,email,picture"
                         icon="fa-facebook"
                         callback={signIn}
