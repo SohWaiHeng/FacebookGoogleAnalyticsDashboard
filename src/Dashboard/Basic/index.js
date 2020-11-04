@@ -483,7 +483,7 @@ export default class BasicDashboard extends Component {
 
         function getFBData() {
 
-            let accesstoken = 'EAAPWNENHrcUBAFCOxKmZAv0Q3PFZCG1VqVZAZC3tzTbMwZA1uFKJtKXKqbHfS3yXwRJPVeUhnqZBW09ErGzGyjGSqXU1yKxjPZB2ZCQ8dHltBxsus2ssFYihK9RG5KM2WL0yDonwUid1LzI6vMDc0RjRIhryQKjHWjuPEHZBgZCC3ZCFhWVakZCk1prREtZA7sOFqQZBi9sdCVn25LMgZDZD';
+            let accesstoken = {PAGE_ACCESS_TOKEN};
 
             const now = Math.round(Date.now() / 1000);
             const before = Math.round(now - 8000000);
