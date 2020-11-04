@@ -10,7 +10,7 @@ const configureLoginProps = {
     cookie: false,
     version: 8.0,
     language: 'en_US',
-    appId: '1079944885546437'
+    appId: 'FACEBOOK_APP_ID'
 }
 
 class FacebookBtn extends Component {
