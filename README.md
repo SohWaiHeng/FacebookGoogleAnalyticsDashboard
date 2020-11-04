@@ -15,12 +15,15 @@ This dashboard allows you to:
 ## Run the app locally
 
 1. Clone this repo
-2. Add your CLIENT_ID into .env file:
+2. Add your Google Client ID into .env file:
     REACT_APP_CLIENT_ID='YOUR_CLIENT_ID'
-3. Add your Facebook App ID into appId inside src/Dashboard/Basic/index.js:
-    appId={FACEBOOK_APP_ID}
-4. Add your access token into accesstoken inside src/Dashboard/Basic/index.js:
+3. Add your Google View ID into .env file:
+    VIEW_ID='YOUR_VIEW_ID'
+4. Add your Facebook App ID into .env file and src/facebookBtn.js:
+    env file => FACEBOOK_APP_ID='FACEBOOK_APP_ID'
+    src/facebookBtn.js => appId: 'FACEBOOK_APP_ID'
+5. Add your access token into accesstoken inside src/Dashboard/Basic/index.js:
     accesstoken = {PAGE_ACCESS_TOKEN}
-5. Run ```npm install```
-6. Run ```npm start```
+6. Run ```npm install```
+7. Run ```npm start```
 
