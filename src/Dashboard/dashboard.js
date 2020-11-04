@@ -12,8 +12,7 @@ import styles from './Basic/index.css';
 
 const DashBoard = () => {
 
-  const viewID = process.env.VIEW_ID;
-
+  const viewID = 'YOUR_VIEW_ID';
 
   return (
     <>
